@@ -16,6 +16,7 @@ def debutDuJeux():
     print("Vous pourrez repondre par 'z' pour haut, 's' pour bas, 'q' pour gauche, 'd' pour droite ")
     print("si vous souhaitez revoir vos touche saisissez 'touche'")
     print("pour revoir les règles, saississez 'regle'")
+    return nomJoueur
 
 def printRegle():
     print()
@@ -85,6 +86,7 @@ def printMap (y, x):
         compteur1 = compteur1 + 1
         print(ligne)
     print()
+    print()
 
 
 
@@ -135,16 +137,44 @@ def checkDeplacement(y, x, deplacement):
     else:
         return "ko"
 
-
+def gameOver():
+    print()
+    print("GAME OVER")
+    print()	
+    print("                      :::!~!!!!!:.")
+    print("                  .xUHWH!! !!?M88WHX:.")
+    print("                .X*#M@$!!  !X!M$$$$$$WWx:.")
+    print("               :!!!!!!?H! :!$!$$$$$$$$$$8X:")
+    print("              !!~  ~:~!! :~!$!#$$$$$$$$$$8X:")
+    print("             :!~::!H!<   ~.U$X!?R$$$$$$$$MM!")
+    print("             ~!~!!!!~~ .:XW$$$U!!?$$$$$$RMM!")
+    print("               !:~~~ .:!M'T#$$$$WX??#MRRMMM!")
+    print("               ~?WuxiW*`   `'#$$$$8!!!!??!!!")
+    print("             :X- M$$$$       `'T#$T~!8$WUXU~")
+    print("            :%`  ~#$$$m:        ~!~ ?$$$$$$")
+    print("          :!`.-   ~T$$$$8xx.  .xWW- ~''##*'")
+    print(".....   -~~:<` !    ~?T#$$@@W@*?$$      /`")
+    print("W$@@M!!! .!~~ !!     .:XUW$W!~ `'~:    :")
+    print("#'~~`.:x%`!!  !H:   !WM$$$$Ti.: .!WUn+!`")
+    print(":::~:!!`:X~ .: ?H.!u '$$$B$$$!W:U!T$$M~")
+    print(".~~   :X@!.-~   ?@WTWo('*$$$W$TH$! `")
+    print("Wi.~!X$?!-~    : ?$$$B$Wu('**$RM!")
+    print("$R@i.~~ !     :   ~$$$$$B$$en:``")
+    print("?MXT@Wx.~    :     ~'##*$$$$M~")
+    print()
+    print()
 
 # Call all the function*
-debutDuJeux()
+nomJoueur = debutDuJeux()
 reponse = ["oui", "yes", "si"]
 question = str(input("Est ce que vous êtes pret ? "))
 while question not in reponse:
     question = str(input("Prenez votre temps et dite moi quand vous serez prêt ! "))
 print()
 avatar = 0
+statSoif = 100
+statFaim = 100
+statSommeil = 100
 positionJoueurY = 3
 positionJoueurX = 10
 printMap(positionJoueurY, positionJoueurX)
@@ -162,6 +192,7 @@ while statutParti == "ok":
     else:
         while checkDeplacement(positionJoueurY, positionJoueurX, direction) == "ko":
             direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
+        
         if direction == "z":
             positionJoueurY = positionJoueurY - 1
         elif direction == "s":
@@ -171,8 +202,12 @@ while statutParti == "ok":
         elif direction == "d":
             positionJoueurX = positionJoueurX + 1
         printMap(positionJoueurY, positionJoueurX)
-        avatar = avatar + 1
-        if avatar == 20:
+        statSommeil = statSommeil - 3
+        statSoif = statSoif - 2
+        statFaim = statFaim - 2
+        print(str(nomJoueur) + " voici vos stat, faim = " + str(statFaim) + ", soif = " + str(statSoif) + ", sommeil = " + str(statSommeil))
+        if statFaim <= 0 or statSoif <= 0 or statSommeil <= 0:
             statutParti = "ko"
-
+if statutParti == "ko":
+    gameOver()
 
