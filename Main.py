@@ -2,37 +2,39 @@ def debutDuJeux():
     print("------------")
     print("----Jeux----")
     print("------------")
-    nomJoueur = str(input("Bonjour anonyme joueur, comment te prénome-tu ? "))
+    nomJoueur = str(input("Bonjour anonyme joueur, comment te prénommes-tu ? "))
     print()
     print("Bonjour " + str(nomJoueur) + " !")
     print()
-    print("Vous allez voir une carte aparaitre, les caractere suivants coresponde au element suivant")
+    print("Bienvenue sur ce jeu de survie, l'objectif est de ce déplacer sur la carte et d'atteindre different point,")
+    print("d'y accomplir des quètes, de les reussir afin de gagner des clefs, et enfin d'atteindre la porte mysterieuse,0")
+    print("et de l'ouvrir a l'aide de vos clefs")
     print()
-    print("# correspond au bord de la carte")
+    print("Vous allez voir apparaitre une carte, les # * V ~ et † coresponde a des decorts, vous ne pouvez pas marcher dessus")
+    print("# = bord du terrain, * = foret, V = montagne, † = desert")
+    print("Pour vous deplacer le jeux vas vous demander ou vous souhaitez aller et vous devrez lui repondre")
+    print("Vous pourrez repondre par 'z' pour haut, 's' pour bas, 'q' pour gauche, 'd' pour droite ")
+    print("si vous souhaitez revoir vos touche saisissez 'touche'")
+    print("pour revoir les règles, saississez 'regle'")
+
+def printRegle():
     print()
-    print("V correspond au zone montagneuse")
+    print("Bienvenue sur ce jeux de survie, l'objectif est de ce déplacer sur la carte et d'atteindre different point,")
+    print("d'y accomplir des quètes, de les reussir afin de gagner des clefs, et enfin d'atteindre la porte mysterieuse,0")
+    print("et de l'ouvrir a l'aide de vos clefs")
     print()
-    print("~ correspond au zone nautique")
-    print()
-    print("† correspond au zone desertique")
-    print()
-    print("* correspond au zone de foret")
-    print()
-    print("∅ correspond au zone de foret")
-    print()
-    reponse = ["oui", "yes", "si"]
-    question = str(input("Est ce que vous êtes pret ? "))
-    while question not in reponse:
-        question = str(input("Prenez votre temps et dite moi quand vous serez prêt ! "))
+    print("Vous allez voir apparaitre une carte, les # * V ~ et † coresponde a des decorts, vous ne pouvez pas marcher dessus")
+    print("# = bord du terrain, * = foret, V = montagne, † = desert")
+    print("Pour vous deplacer le jeux vas vous demander ou vous souhaitez aller et vous devrez lui repondre")
+    print("Vous pourrez repondre par 'haut', 'bas', 'gauche', droite")
+    print("si vous souhaitez revoir vos touche saisissez 'touche'")
+    print("pour revoir les règles, saississez 'regle'")
     print()
 
 
 
-
-
-
-
-
+def printTouche():
+    print("Pour vous deplacer saisissez 'haut', 'bas', 'gauche', 'droite' vers une direction disponible ! ")
 
 # def the map
 def printMap (y, x):
@@ -137,30 +139,40 @@ def checkDeplacement(y, x, deplacement):
 
 # Call all the function*
 debutDuJeux()
+reponse = ["oui", "yes", "si"]
+question = str(input("Est ce que vous êtes pret ? "))
+while question not in reponse:
+    question = str(input("Prenez votre temps et dite moi quand vous serez prêt ! "))
+print()
 avatar = 0
 positionJoueurY = 3
 positionJoueurX = 10
 printMap(positionJoueurY, positionJoueurX)
 statutParti = "ok"
-directionPossible = ["bas", "haut", "gauche", "droite"]
+directionPossible = ["s", "z", "q", "d", "regle", "touche"]
 print()
-while statutParti == "ok":    
-    direction = input("Quel direction souhaitez vous prendre ? ")
+while statutParti == "ok":
+    direction = input("Que souhaitez vous faire ? ")
     while direction not in directionPossible:
-        direction = input("Choisissez parmis haut, bas, gauche ou droite ! ")
-    while checkDeplacement(positionJoueurY, positionJoueurX, direction) == "ko":
-        direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
-    if direction == "haut":
-        positionJoueurY = positionJoueurY - 1
-    elif direction == "bas":
-        positionJoueurY = positionJoueurY + 1
-    elif direction == "gauche":
-        positionJoueurX = positionJoueurX - 1
-    elif direction == "droite":
-        positionJoueurX = positionJoueurX + 1
-    printMap(positionJoueurY, positionJoueurX)
-    avatar = avatar + 1
-    if avatar == 10:
-        statutParti = "ko"
+        direction = input("Choisissez parmis z, s, q, d, regle ou touche ! ")
+    if direction == "regle":
+        printRegle()
+    elif direction == "touche":
+        printTouche()
+    else:
+        while checkDeplacement(positionJoueurY, positionJoueurX, direction) == "ko":
+            direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
+        if direction == "z":
+            positionJoueurY = positionJoueurY - 1
+        elif direction == "s":
+            positionJoueurY = positionJoueurY + 1
+        elif direction == "q":
+            positionJoueurX = positionJoueurX - 1
+        elif direction == "d":
+            positionJoueurX = positionJoueurX + 1
+        printMap(positionJoueurY, positionJoueurX)
+        avatar = avatar + 1
+        if avatar == 20:
+            statutParti = "ko"
 
 
