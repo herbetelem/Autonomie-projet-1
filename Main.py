@@ -4,6 +4,7 @@ import fileFunction.printTouche as filePrintTouche
 import fileFunction.printMap as filePrintMap
 import fileFunction.checkDeplacement as fileCheckDeplacement
 import fileFunction.gameOver as fileGameOver
+import fileFunction.gameWin as fileGameWin
 
 
 
@@ -37,25 +38,30 @@ while statutParti == "ok":
     elif direction == "touche":
         filePrintTouche.printTouche()
     else:
-        while fileCheckDeplacement.checkDeplacement(positionJoueurY, positionJoueurX, direction) == "ko":
+        check = fileCheckDeplacement.checkDeplacement(positionJoueurY, positionJoueurX, direction)
+        while check == "ko":
             direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
-        
-        if direction == "z":
-            positionJoueurY = positionJoueurY - 1
-        elif direction == "s":
-            positionJoueurY = positionJoueurY + 1
-        elif direction == "q":
-            positionJoueurX = positionJoueurX - 1
-        elif direction == "d":
-            positionJoueurX = positionJoueurX + 1
-            
-        filePrintMap.printMap(positionJoueurY, positionJoueurX)
-        statSommeil = statSommeil - 3
-        statSoif = statSoif - 2
-        statFaim = statFaim - 2
-        print(str(nomJoueur) + " voici vos stat, faim = " + str(statFaim) + ", soif = " + str(statSoif) + ", sommeil = " + str(statSommeil))
-        if statFaim <= 0 or statSoif <= 0 or statSommeil <= 0:
-            statutParti = "ko"
+
+        if check == "win":
+            fileGameWin.gameWin(nomJoueur)
+        else:
+            if direction == "z":
+                positionJoueurY = positionJoueurY - 1
+            elif direction == "s":
+                positionJoueurY = positionJoueurY + 1
+            elif direction == "q":
+                positionJoueurX = positionJoueurX - 1
+            elif direction == "d":
+                positionJoueurX = positionJoueurX + 1
+                
+            filePrintMap.printMap(positionJoueurY, positionJoueurX)
+            statSommeil = statSommeil - 3
+            statSoif = statSoif - 2
+            statFaim = statFaim - 2
+            print(str(nomJoueur) + " voici vos stat, faim = " + str(statFaim) + ", soif = " + str(statSoif) + ", sommeil = " + str(statSommeil))
+            if statFaim <= 0 or statSoif <= 0 or statSommeil <= 0:
+                statutParti = "ko"
 
 if statutParti == "ko":
     fileGameOver.gameOver()
+
