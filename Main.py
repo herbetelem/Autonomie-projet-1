@@ -211,3 +211,4 @@ while statutParti == "ok":
 if statutParti == "ko":
     gameOver()
 
+print()
