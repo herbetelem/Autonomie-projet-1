@@ -14,6 +14,7 @@ reponse = ["oui", "yes", "si"]
 question = str(input("Est ce que vous êtes pret ? "))
 while question not in reponse:
     question = str(input("Prenez votre temps et dite moi quand vous serez prêt ! "))
+
 print()
 avatar = 0
 statSoif = 100
@@ -27,8 +28,10 @@ directionPossible = ["s", "z", "q", "d", "regle", "touche"]
 print()
 while statutParti == "ok":
     direction = input("Que souhaitez vous faire ? ")
+
     while direction not in directionPossible:
         direction = input("Choisissez parmis z, s, q, d, regle ou touche ! ")
+
     if direction == "regle":
         filePrintRegle.printRegle()
     elif direction == "touche":
@@ -45,6 +48,7 @@ while statutParti == "ok":
             positionJoueurX = positionJoueurX - 1
         elif direction == "d":
             positionJoueurX = positionJoueurX + 1
+            
         filePrintMap.printMap(positionJoueurY, positionJoueurX)
         statSommeil = statSommeil - 3
         statSoif = statSoif - 2
@@ -52,5 +56,6 @@ while statutParti == "ok":
         print(str(nomJoueur) + " voici vos stat, faim = " + str(statFaim) + ", soif = " + str(statSoif) + ", sommeil = " + str(statSommeil))
         if statFaim <= 0 or statSoif <= 0 or statSommeil <= 0:
             statutParti = "ko"
+
 if statutParti == "ko":
     fileGameOver.gameOver()
