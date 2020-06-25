@@ -53,7 +53,7 @@ while statutParti == "ok":
                 positionJoueurX = positionJoueurX - 1
             elif direction == "d":
                 positionJoueurX = positionJoueurX + 1
-                
+
             filePrintMap.printMap(positionJoueurY, positionJoueurX)
             statSommeil = statSommeil - 3
             statSoif = statSoif - 2
