@@ -82,7 +82,7 @@ while statutParti == "ok":
     print("Votre action précedentes était de : " + prevMoove)
     filePrintMap.printMap(positionJoueurY, positionJoueurX, itemSlot)
     intoMyBag.intoMyBag(sac, limitSac)
-    print(str(nomJoueur) + " voici vos stat, faim = " + str(statFaim) + ", soif = " + str(statSoif) + ", sommeil = " + str(statSommeil))
+    print(f"{nomJoueur} voici vos stat, faim = {statFaim}, soif = {statSoif}, sommeil = {statSommeil}")
     if statFaim <= 0 or statSoif <= 0 or statSommeil <= 0:
         statutParti = "ko"
 

@@ -3,8 +3,11 @@ def intoMyBag(bag, limitBag):
     returned = "vous avez dans votre sac ["
     for index in bag:
         if index == bag[len(bag) - 1]:
-            returned = returned + index + "] "
+            if isinstance(index, list):
+                returned = f"{returned} {index[0]}"
+            else:    
+                returned = f"{returned} {index}"
         else:
-            returned = returned + index + ", "
-    returned = returned + ". Il vous reste " + str(placeRestant) + " de places dans votre sac"
+            returned = returned + index + "], ["
+    returned = f"{returned} ]. Il vous reste {placeRestant} de places dans votre sac"
     print(returned)

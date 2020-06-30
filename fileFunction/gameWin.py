@@ -33,5 +33,5 @@ def gameWin(nomJouteur):
     print("                        / / \;=;\ ")
     print()
     print()
-    print("Félicitation " + str(nomJouteur) + ", vous avez gagner cette partie en 3 coups !")
+    print(f"Félicitation {nomJouteur}, vous avez gagner cette partie !")
     sys.exit()
