@@ -8,6 +8,7 @@ import fileFunction.gameWin as fileGameWin
 import fileFunction.intoMyBag as intoMyBag
 import fileFunction.sleepHour as sleepHour
 import fileFunction.createItemSlot as createItemSlot
+import fileFunction.checkItemPosition as checkItemPosition
 import os
 
 
@@ -38,20 +39,27 @@ filePrintMap.printMap(positionJoueurY, positionJoueurX, itemSlot)
 statutParti = "ok"
 actionPossible = ["bouger", "dormir", "regle", "touche"]
 directionPossible = ["s", "z", "q", "d"]
+
 print()
 while statutParti == "ok":
     action = input("Que souhaitez vous faire ? ")
+    
     while action not in actionPossible:
         action = input("Vous pouvez bouger ou dormir ! ")
+    
     if action == "regle":
         filePrintRegle.printRegle()
+    
     elif action == "touche":
         filePrintTouche.printTouche()
+    
     elif action == "bouger":
         direction = input("Vers ou souhaitez vous bouger ? ")
+        
         while direction not in directionPossible:
             direction = input("Choisissez parmis z, s, q, d, regle ou touche ! ")
         check = fileCheckDeplacement.checkDeplacement(positionJoueurY, positionJoueurX, direction)
+        
         while check == "ko":
             direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
 
@@ -71,6 +79,7 @@ while statutParti == "ok":
         statSoif = statSoif - 2
         statFaim = statFaim - 2
         prevMoove = "marcher"
+
     elif action == "dormir":
         nbHeure = int(input("Combien d'heure voulez vous dormir ? "))
         goSleep = sleepHour.sleepHour(nbHeure, statSommeil, statSoif, statFaim)
@@ -79,10 +88,16 @@ while statutParti == "ok":
         statSoif = goSleep[2]
         prevMoove = "dormir"
     clear()
+
     print("Votre action précedentes était de : " + prevMoove)
     filePrintMap.printMap(positionJoueurY, positionJoueurX, itemSlot)
     intoMyBag.intoMyBag(sac, limitSac)
     print(f"{nomJoueur} voici vos stat, faim = {statFaim}, soif = {statSoif}, sommeil = {statSommeil}")
+
+    itemPlaceCheck = checkItemPosition.checkItemPosition(positionJoueurX, positionJoueurY, itemSlot)
+    if itemPlaceCheck != None:
+        print(f"ok tu est a l'emplacement d'un objet, tu creuse et trouve un {itemPlaceCheck} que veux tu en faire ? ")
+    
     if statFaim <= 0 or statSoif <= 0 or statSommeil <= 0:
         statutParti = "ko"
 
