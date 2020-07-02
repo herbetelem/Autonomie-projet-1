@@ -39,6 +39,7 @@ filePrintMap.printMap(positionJoueurY, positionJoueurX, itemSlot)
 statutParti = "ok"
 actionPossible = ["bouger", "dormir", "regle", "touche"]
 directionPossible = ["s", "z", "q", "d"]
+itemActionPossible = ["ramasser", "rien"]
 
 print()
 while statutParti == "ok":
@@ -89,17 +90,24 @@ while statutParti == "ok":
         prevMoove = "dormir"
     clear()
 
+    itemPlaceCheck = checkItemPosition.checkItemPosition(positionJoueurX, positionJoueurY, itemSlot)
+    if itemPlaceCheck != None:
+        itemAction = input(f"ok tu est a l'emplacement d'un objet, tu creuse et trouve un {itemPlaceCheck} que veux tu en faire, (ramasser, ou rien) ? ")
+        while itemAction not in itemActionPossible:
+            itemAction = input(f"ramasser ou rien ")
+        if itemAction == "ramasser":
+            if len(sac) < 10:
+                sac.append(itemPlaceCheck)
+            else:
+                print("votre sac est plein, vous ne pouvez pas rammasser un autre objet")
+
+    if statFaim <= 0 or statSoif <= 0 or statSommeil <= 0:
+        statutParti = "ko"
+
     print("Votre action précedentes était de : " + prevMoove)
     filePrintMap.printMap(positionJoueurY, positionJoueurX, itemSlot)
     intoMyBag.intoMyBag(sac, limitSac)
     print(f"{nomJoueur} voici vos stat, faim = {statFaim}, soif = {statSoif}, sommeil = {statSommeil}")
-
-    itemPlaceCheck = checkItemPosition.checkItemPosition(positionJoueurX, positionJoueurY, itemSlot)
-    if itemPlaceCheck != None:
-        print(f"ok tu est a l'emplacement d'un objet, tu creuse et trouve un {itemPlaceCheck} que veux tu en faire ? ")
-    
-    if statFaim <= 0 or statSoif <= 0 or statSommeil <= 0:
-        statutParti = "ko"
 
 if statutParti == "ko":
     fileGameOver.gameOver()
