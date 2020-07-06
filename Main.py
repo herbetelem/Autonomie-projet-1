@@ -1,14 +1,17 @@
 import fileFunction.debutDuJeux as fileDebutDuJeux
 import fileFunction.printRegle as filePrintRegle
 import fileFunction.printTouche as filePrintTouche
-import fileFunction.printMap as filePrintMap
-import fileFunction.checkDeplacement as fileCheckDeplacement
+# import fileFunction.printMap as filePrintMap
+# import fileFunction.checkDeplacement as fileCheckDeplacement
 import fileFunction.gameOver as fileGameOver
 import fileFunction.gameWin as fileGameWin
-import fileFunction.intoMyBag as intoMyBag
-import fileFunction.sleepHour as sleepHour
-import fileFunction.createItemSlot as createItemSlot
-import fileFunction.checkItemPosition as checkItemPosition
+# import fileFunction.intoMyBag as intoMyBag
+# import fileFunction.sleepHour as sleepHour
+# import fileFunction.createItemSlot as createItemSlot
+# import fileFunction.checkItemPosition as checkItemPosition
+import fileFunction.variableMap as variableMap
+import fileFunction.FunctionAboutBag as FBag
+import fileFunction.FunctionAboutMap as FMap
 import os
 
 
@@ -27,15 +30,15 @@ avatar = 0
 statSoif = 100
 statFaim = 100
 statSommeil = 100
-positionJoueurY = 3
-positionJoueurX = 10
-sac = ["PC portable", "couteau suisse", "carte", ["bouteille", 100]]
+positionJoueurY = 2
+positionJoueurX = 13
+sac = ["PC portable", "couteau suisse", "carte", "bouteille d'eau"]
 limitSac = 10
-itemSlot = [["bouteille d'eau pleine", 5], ["pomme", 5], ["noix de coco", 5], ["kit de cookie", 5]]
-itemSlot = createItemSlot.createItemSlot(itemSlot)
+itemSlot = [["bouteille d'eau", 10], ["pomme", 10], ["noix de coco", 10], ["kit de cookie", 5]]
+itemSlot = FBag.createItemSlot(itemSlot)
 prevMoove = "commencer"
 clear()
-filePrintMap.printMap(positionJoueurY, positionJoueurX, itemSlot)
+FMap.printMap(positionJoueurY, positionJoueurX, itemSlot, variableMap.mapInATab)
 statutParti = "ok"
 actionPossible = ["bouger", "dormir", "regle", "touche"]
 directionPossible = ["s", "z", "q", "d"]
@@ -59,7 +62,7 @@ while statutParti == "ok":
         
         while direction not in directionPossible:
             direction = input("Choisissez parmis z, s, q, d, regle ou touche ! ")
-        check = fileCheckDeplacement.checkDeplacement(positionJoueurY, positionJoueurX, direction)
+        check = FMap.checkDeplacement(positionJoueurY, positionJoueurX, direction, variableMap.mapBinInATab)
         
         while check == "ko":
             direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
@@ -83,21 +86,22 @@ while statutParti == "ok":
 
     elif action == "dormir":
         nbHeure = int(input("Combien d'heure voulez vous dormir ? "))
-        goSleep = sleepHour.sleepHour(nbHeure, statSommeil, statSoif, statFaim)
+        goSleep = FMap.sleepHour(nbHeure, statSommeil, statSoif, statFaim)
         statSommeil = goSleep[0]
         statFaim = goSleep[1]
         statSoif = goSleep[2]
         prevMoove = "dormir"
     clear()
 
-    itemPlaceCheck = checkItemPosition.checkItemPosition(positionJoueurX, positionJoueurY, itemSlot)
+    itemPlaceCheck = FMap.checkItemPosition(positionJoueurX, positionJoueurY, itemSlot)
     if itemPlaceCheck != None:
-        itemAction = input(f"ok tu est a l'emplacement d'un objet, tu creuse et trouve un {itemPlaceCheck} que veux tu en faire, (ramasser, ou rien) ? ")
+        itemAction = input(f"en marchant vous tombé sur un {itemPlaceCheck} que veux tu en faire, (ramasser, ou rien) ? ")
         while itemAction not in itemActionPossible:
             itemAction = input(f"ramasser ou rien ")
         if itemAction == "ramasser":
             if len(sac) < 10:
                 sac.append(itemPlaceCheck)
+                itemSlot = FBag.dellAnItem(positionJoueurX, positionJoueurY, itemSlot, itemPlaceCheck)
             else:
                 print("votre sac est plein, vous ne pouvez pas rammasser un autre objet")
 
@@ -105,8 +109,8 @@ while statutParti == "ok":
         statutParti = "ko"
 
     print("Votre action précedentes était de : " + prevMoove)
-    filePrintMap.printMap(positionJoueurY, positionJoueurX, itemSlot)
-    intoMyBag.intoMyBag(sac, limitSac)
+    FMap.printMap(positionJoueurY, positionJoueurX, itemSlot, variableMap.mapInATab)
+    FBag.intoMyBag(sac, limitSac)
     print(f"{nomJoueur} voici vos stat, faim = {statFaim}, soif = {statSoif}, sommeil = {statSommeil}")
 
 if statutParti == "ko":
