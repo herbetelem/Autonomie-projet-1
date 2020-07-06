@@ -8,6 +8,8 @@ def checkDeplacement(y, x, deplacement, mapBinaire):
     elif deplacement == "d":
         x = x + 1
 
+    var = mapBinaire[y][x]
+
     if mapBinaire[y][x] == "1":
         return "ok"
     elif mapBinaire[y][x] == "2":
@@ -29,14 +31,8 @@ def checkItemPosition(playerX, playerY, listItems):
 
 def printMap (y, x, items, map1):
     
-    for index in items:
-        positionItemsIndex = 2
-        while positionItemsIndex < (index[1] * 2 + 2):
-            if index[positionItemsIndex + 1] > 0 and index[positionItemsIndex] >0:
-                map1[index[positionItemsIndex + 1]][index[positionItemsIndex]] = "."
-            else:
-                map1[index[positionItemsIndex + 1]][index[positionItemsIndex]] = " "
-            positionItemsIndex += 2
+    map1 = addItemPointOnMap(map1, items)
+    
     compteur1 = 0
     print()
     while compteur1 < len(map1):
@@ -58,3 +54,14 @@ def sleepHour(nbHeure, statSommeil, statSoif, statFaim):
     statFaim = statFaim - nbHeure * 1
     statSoif = statSoif - nbHeure * 2
     return statSommeil, statFaim, statSoif
+
+def addItemPointOnMap(map1, items):
+    for index in items:
+        positionItemsIndex = 2
+        while positionItemsIndex < (len(index) - 2):
+            if index[positionItemsIndex + 1] > 0 and index[positionItemsIndex] > 0:
+                map1[index[positionItemsIndex + 1]][index[positionItemsIndex]] = "."
+            else:
+                map1[index[abs(positionItemsIndex) + 1]][index[abs(positionItemsIndex)]] = " "
+            positionItemsIndex += 2
+    return map1

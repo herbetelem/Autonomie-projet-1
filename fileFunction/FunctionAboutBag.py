@@ -46,7 +46,9 @@ def dellAnItem(x, y, itemList, nomItem):
     compteur = 2
     while compteur < len(itemList[indexItem]):
         if itemList[indexItem][compteur] == x and itemList[indexItem][compteur+1] == y:
-            itemList[indexItem][compteur] = 0
-            itemList[indexItem][compteur+1] = 0
+            # itemList[indexItem][compteur] = itemList[indexItem][compteur] * -1
+            # itemList[indexItem][compteur+1] = itemList[indexItem][compteur+1] * -1
+            del itemList[indexItem][compteur]
+            del itemList[indexItem][compteur]
         compteur += 2
     return itemList

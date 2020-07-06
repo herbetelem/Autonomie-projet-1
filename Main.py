@@ -62,10 +62,12 @@ while statutParti == "ok":
         
         while direction not in directionPossible:
             direction = input("Choisissez parmis z, s, q, d, regle ou touche ! ")
+
         check = FMap.checkDeplacement(positionJoueurY, positionJoueurX, direction, variableMap.mapBinInATab)
         
         while check == "ko":
             direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
+            check = FMap.checkDeplacement(positionJoueurY, positionJoueurX, direction, variableMap.mapBinInATab)
 
         if check == "win":
             fileGameWin.gameWin(nomJoueur)
