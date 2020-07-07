@@ -1,11 +1,12 @@
 import fileFunction.debutDuJeux as fileDebutDuJeux
 import fileFunction.printRegle as filePrintRegle
 import fileFunction.printTouche as filePrintTouche
-import fileFunction.gameOver as fileGameOver
-import fileFunction.gameWin as fileGameWin
+# import fileFunction.gameOver as fileGameOver
+# import fileFunction.gameWin as fileGameWin
 import fileFunction.variableMap as variableMap
 import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
+import fileFunction.FunctionPrint as FPrint
 import fileFunction.variableClassic as VarC
 import os
 
@@ -31,7 +32,7 @@ while VarC.statutParti == "ok":
     action = input("Que souhaitez vous faire ? ")
     
     while action not in VarC.actionPossible:
-        action = input("Vous pouvez bouger ou dormir ! ")
+        action = input(f"Vous pouvez {VarC.actionPossible}")
     
     if action == "regle":
         filePrintRegle.printRegle()
@@ -52,7 +53,7 @@ while VarC.statutParti == "ok":
             check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, variableMap.mapBinInATab)
 
         if check == "win":
-            fileGameWin.gameWin(nomJoueur)
+            FPrint.gameWin(nomJoueur)
         else:
             if direction == "z":
                 VarC.positionJoueurY = VarC.positionJoueurY - 1
@@ -68,6 +69,20 @@ while VarC.statutParti == "ok":
         VarC.statFaim = VarC.statFaim - 2
         VarC.prevMoove = "marcher"
 
+        clear()
+
+        itemPlaceCheck = FMap.checkItemPosition(VarC.positionJoueurX, VarC.positionJoueurY, VarC.itemSlot)
+        if itemPlaceCheck != None:
+            itemAction = input(f"en marchant vous tombé sur un {itemPlaceCheck} que veux tu en faire, (ramasser, ou rien) ? ")
+            while itemAction not in VarC.itemActionPossible:
+                itemAction = input(f"ramasser ou rien ")
+            if itemAction == "ramasser":
+                if len(VarC.sac) < 10:
+                    VarC.sac.append(itemPlaceCheck)
+                    variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+                else:
+                    print("votre sac est plein, vous ne pouvez pas rammasser un autre objet")
+
     elif action == "dormir":
         nbHeure = int(input("Combien d'heure voulez vous dormir ? "))
         goSleep = FMap.sleepHour(nbHeure, VarC.statSommeil, VarC.statSoif, VarC.statFaim)
@@ -75,20 +90,19 @@ while VarC.statutParti == "ok":
         VarC.statFaim = goSleep[1]
         VarC.statSoif = goSleep[2]
         VarC.prevMoove = "dormir"
-    clear()
-
-    itemPlaceCheck = FMap.checkItemPosition(VarC.positionJoueurX, VarC.positionJoueurY, VarC.itemSlot)
-    if itemPlaceCheck != None:
-        itemAction = input(f"en marchant vous tombé sur un {itemPlaceCheck} que veux tu en faire, (ramasser, ou rien) ? ")
-        while itemAction not in VarC.itemActionPossible:
-            itemAction = input(f"ramasser ou rien ")
-        if itemAction == "ramasser":
-            if len(VarC.sac) < 10:
-                VarC.sac.append(itemPlaceCheck)
-                # itemSlot = FBag.dellAnItem(VarC.positionJoueurX, VarC.positionJoueurY, VarC.itemSlot, itemPlaceCheck)
-                variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
-            else:
-                print("votre sac est plein, vous ne pouvez pas rammasser un autre objet")
+    
+    elif action == "inventaire":
+        clear()
+        FPrint.printBag()
+        print()
+        print(f"Vous disposer actuellement dans votre sac de :")
+        compteur = 0
+        result = ""
+        for i in VarC.sac:
+            result = f"{result} {compteur}: {i}\n"
+            compteur +=1
+        print(result)
+        choixAction = input("Quel objet voulez vous utiliser ? (par ID)")
 
     if VarC.statFaim <= 0 or VarC.statSoif <= 0 or VarC.statSommeil <= 0:
         VarC.statutParti = "ko"
@@ -99,5 +113,5 @@ while VarC.statutParti == "ok":
     print(f"{nomJoueur} voici vos stat, faim = {VarC.statFaim}, soif = {VarC.statSoif}, sommeil = {VarC.statSommeil}")
 
 if VarC.statutParti == "ko":
-    fileGameOver.gameOver()
+    FPrint.gameOver()
 

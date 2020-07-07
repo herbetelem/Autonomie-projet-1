@@ -9,6 +9,6 @@ limitSac = 12
 itemSlot = [["bouteille d'eau", 10], ["ananas", 10], ["noix de coco", 10], ["kit de cookie", 5]]
 prevMoove = "commencer"
 statutParti = "ok"
-actionPossible = ["bouger", "dormir", "regle", "touche"]
+actionPossible = ["bouger", "dormir", "regle", "touche", "inventaire"]
 directionPossible = ["s", "z", "q", "d"]
 itemActionPossible = ["ramasser", "rien"]
