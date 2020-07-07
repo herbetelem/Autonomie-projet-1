@@ -1,3 +1,4 @@
+nomJoueur = ""
 avatar = 0
 statSoif = 100
 statFaim = 100

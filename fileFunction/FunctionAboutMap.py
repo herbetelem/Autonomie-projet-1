@@ -1,3 +1,15 @@
+import fileFunction.debutDuJeux as fileDebutDuJeux
+import fileFunction.printRegle as filePrintRegle
+import fileFunction.printTouche as filePrintTouche
+import fileFunction.variableMap as variableMap
+import fileFunction.FunctionAboutBag as FBag
+import fileFunction.FunctionAboutMap as FMap
+import fileFunction.FunctionPrint as FPrint
+import fileFunction.variableClassic as VarC
+import os
+clear = lambda: os.system('cls')
+
+
 def checkDeplacement(y, x, deplacement, mapBinaire):
     if deplacement == "z":
         y = y - 1
@@ -62,3 +74,10 @@ def addItemPointOnMap(map1, items):
                 map1[index[abs(positionItemsIndex) + 1]][index[abs(positionItemsIndex)]] = " "
             positionItemsIndex += 2
     return map1
+
+def endTurn():
+    clear()
+    FMap.printMap(VarC.positionJoueurY, VarC.positionJoueurX, variableMap.mapInATab)
+    print(f"Votre action précedentes était de : {VarC.prevMoove}")
+    FBag.intoMyBag(VarC.sac, VarC.limitSac)
+    print(f"{VarC.nomJoueur} voici vos stat, faim = {VarC.statFaim}, soif = {VarC.statSoif}, sommeil = {VarC.statSommeil}")
