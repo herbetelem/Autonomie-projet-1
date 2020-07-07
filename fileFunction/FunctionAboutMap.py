@@ -29,10 +29,7 @@ def checkItemPosition(playerX, playerY, listItems):
     return result
 
 
-def printMap (y, x, items, map1):
-    
-    map1 = addItemPointOnMap(map1, items)
-    
+def printMap (y, x, map1):
     compteur1 = 0
     print()
     while compteur1 < len(map1):

@@ -1,17 +1,12 @@
 import fileFunction.debutDuJeux as fileDebutDuJeux
 import fileFunction.printRegle as filePrintRegle
 import fileFunction.printTouche as filePrintTouche
-# import fileFunction.printMap as filePrintMap
-# import fileFunction.checkDeplacement as fileCheckDeplacement
 import fileFunction.gameOver as fileGameOver
 import fileFunction.gameWin as fileGameWin
-# import fileFunction.intoMyBag as intoMyBag
-# import fileFunction.sleepHour as sleepHour
-# import fileFunction.createItemSlot as createItemSlot
-# import fileFunction.checkItemPosition as checkItemPosition
 import fileFunction.variableMap as variableMap
 import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
+import fileFunction.variableClassic as VarC
 import os
 
 
@@ -26,29 +21,16 @@ while question not in reponse:
 
 print()
 clear = lambda: os.system('cls')
-avatar = 0
-statSoif = 100
-statFaim = 100
-statSommeil = 100
-positionJoueurY = 2
-positionJoueurX = 13
-sac = ["PC portable", "couteau suisse", "carte", "bouteille d'eau"]
-limitSac = 10
-itemSlot = [["bouteille d'eau", 10], ["pomme", 10], ["noix de coco", 10], ["kit de cookie", 5]]
-itemSlot = FBag.createItemSlot(itemSlot)
-prevMoove = "commencer"
+VarC.itemSlot = FBag.createItemSlot(VarC.itemSlot)
 clear()
-FMap.printMap(positionJoueurY, positionJoueurX, itemSlot, variableMap.mapInATab)
-statutParti = "ok"
-actionPossible = ["bouger", "dormir", "regle", "touche"]
-directionPossible = ["s", "z", "q", "d"]
-itemActionPossible = ["ramasser", "rien"]
+variableMap.mapInATab = FMap.addItemPointOnMap(variableMap.mapInATab, VarC.itemSlot)
+FMap.printMap(VarC.positionJoueurY, VarC.positionJoueurX, variableMap.mapInATab)
 
 print()
-while statutParti == "ok":
+while VarC.statutParti == "ok":
     action = input("Que souhaitez vous faire ? ")
     
-    while action not in actionPossible:
+    while action not in VarC.actionPossible:
         action = input("Vous pouvez bouger ou dormir ! ")
     
     if action == "regle":
@@ -60,61 +42,62 @@ while statutParti == "ok":
     elif action == "bouger":
         direction = input("Vers ou souhaitez vous bouger ? ")
         
-        while direction not in directionPossible:
+        while direction not in VarC.directionPossible:
             direction = input("Choisissez parmis z, s, q, d, regle ou touche ! ")
 
-        check = FMap.checkDeplacement(positionJoueurY, positionJoueurX, direction, variableMap.mapBinInATab)
+        check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, variableMap.mapBinInATab)
         
         while check == "ko":
             direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
-            check = FMap.checkDeplacement(positionJoueurY, positionJoueurX, direction, variableMap.mapBinInATab)
+            check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, variableMap.mapBinInATab)
 
         if check == "win":
             fileGameWin.gameWin(nomJoueur)
         else:
             if direction == "z":
-                positionJoueurY = positionJoueurY - 1
+                VarC.positionJoueurY = VarC.positionJoueurY - 1
             elif direction == "s":
-                positionJoueurY = positionJoueurY + 1
+                VarC.positionJoueurY = VarC.positionJoueurY + 1
             elif direction == "q":
-                positionJoueurX = positionJoueurX - 1
+                VarC.positionJoueurX = VarC.positionJoueurX - 1
             elif direction == "d":
-                positionJoueurX = positionJoueurX + 1
+                VarC.positionJoueurX = VarC.positionJoueurX + 1
         
-        statSommeil = statSommeil - 3
-        statSoif = statSoif - 2
-        statFaim = statFaim - 2
-        prevMoove = "marcher"
+        VarC.statSommeil = VarC.statSommeil - 3
+        VarC.statSoif = VarC.statSoif - 2
+        VarC.statFaim = VarC.statFaim - 2
+        VarC.prevMoove = "marcher"
 
     elif action == "dormir":
         nbHeure = int(input("Combien d'heure voulez vous dormir ? "))
-        goSleep = FMap.sleepHour(nbHeure, statSommeil, statSoif, statFaim)
-        statSommeil = goSleep[0]
-        statFaim = goSleep[1]
-        statSoif = goSleep[2]
-        prevMoove = "dormir"
+        goSleep = FMap.sleepHour(nbHeure, VarC.statSommeil, VarC.statSoif, VarC.statFaim)
+        VarC.statSommeil = goSleep[0]
+        VarC.statFaim = goSleep[1]
+        VarC.statSoif = goSleep[2]
+        VarC.prevMoove = "dormir"
     clear()
 
-    itemPlaceCheck = FMap.checkItemPosition(positionJoueurX, positionJoueurY, itemSlot)
+    itemPlaceCheck = FMap.checkItemPosition(VarC.positionJoueurX, VarC.positionJoueurY, VarC.itemSlot)
     if itemPlaceCheck != None:
         itemAction = input(f"en marchant vous tombé sur un {itemPlaceCheck} que veux tu en faire, (ramasser, ou rien) ? ")
-        while itemAction not in itemActionPossible:
+        while itemAction not in VarC.itemActionPossible:
             itemAction = input(f"ramasser ou rien ")
         if itemAction == "ramasser":
-            if len(sac) < 10:
-                sac.append(itemPlaceCheck)
-                itemSlot = FBag.dellAnItem(positionJoueurX, positionJoueurY, itemSlot, itemPlaceCheck)
+            if len(VarC.sac) < 10:
+                VarC.sac.append(itemPlaceCheck)
+                # itemSlot = FBag.dellAnItem(VarC.positionJoueurX, VarC.positionJoueurY, VarC.itemSlot, itemPlaceCheck)
+                variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
             else:
                 print("votre sac est plein, vous ne pouvez pas rammasser un autre objet")
 
-    if statFaim <= 0 or statSoif <= 0 or statSommeil <= 0:
-        statutParti = "ko"
+    if VarC.statFaim <= 0 or VarC.statSoif <= 0 or VarC.statSommeil <= 0:
+        VarC.statutParti = "ko"
 
-    print("Votre action précedentes était de : " + prevMoove)
-    FMap.printMap(positionJoueurY, positionJoueurX, itemSlot, variableMap.mapInATab)
-    FBag.intoMyBag(sac, limitSac)
-    print(f"{nomJoueur} voici vos stat, faim = {statFaim}, soif = {statSoif}, sommeil = {statSommeil}")
+    print(f"Votre action précedentes était de : {VarC.prevMoove}")
+    FMap.printMap(VarC.positionJoueurY, VarC.positionJoueurX, variableMap.mapInATab)
+    FBag.intoMyBag(VarC.sac, VarC.limitSac)
+    print(f"{nomJoueur} voici vos stat, faim = {VarC.statFaim}, soif = {VarC.statSoif}, sommeil = {VarC.statSommeil}")
 
-if statutParti == "ko":
+if VarC.statutParti == "ko":
     fileGameOver.gameOver()
 
