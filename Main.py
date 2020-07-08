@@ -3,6 +3,7 @@ import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
 import fileFunction.FunctionMain as FMain
 import fileFunction.FunctionPrint as FPrint
+import fileFunction.FunctionGame as FGame
 import fileFunction.variableClassic as VarC
 import os
 clear = lambda: os.system('cls')
@@ -25,28 +26,31 @@ def Main():
 
     print()
     while VarC.statutParti == "ok":
-        action = input("Que souhaitez vous faire ? ")
-        
-        while action not in VarC.actionPossible:
-            action = input(f"Vous pouvez {VarC.actionPossible}")
-        
-        if action == "regle":
-            FPrint.printRegle()
-        
-        elif action == "touche":
-            FPrint.printTouche()
-        
-        elif action == "bouger":
-            FMain.bouger()
+        if variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "£":
+            recompense = FGame.jeuxNombreMystere()
+        else:
+            action = input("Que souhaitez vous faire ? ")
+            
+            while action not in VarC.actionPossible:
+                action = input(f"Vous pouvez {VarC.actionPossible}")
+            
+            if action == "regle":
+                FPrint.printRegle()
+            
+            elif action == "touche":
+                FPrint.printTouche()
+            
+            elif action == "bouger":
+                FMain.bouger()
 
-        elif action == "dormir":
-            FMain.dormir()
-        
-        elif action == "inventaire":
-            FMain.inventaire()
+            elif action == "dormir":
+                FMain.dormir()
+            
+            elif action == "inventaire":
+                FMain.inventaire()
 
-        if VarC.statFaim <= 0 or VarC.statSoif <= 0 or VarC.statSommeil <= 0:
-            VarC.statutParti = "ko"
+            if VarC.statFaim <= 0 or VarC.statSoif <= 0 or VarC.statSommeil <= 0:
+                VarC.statutParti = "ko"
 
         FMap.endTurn()
 

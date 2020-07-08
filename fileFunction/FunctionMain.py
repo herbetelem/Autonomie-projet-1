@@ -3,6 +3,7 @@ import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
 import fileFunction.FunctionMain as FMain
 import fileFunction.FunctionPrint as FPrint
+import fileFunction.FunctionGame as FGame
 import fileFunction.variableClassic as VarC
 import os
 clear = lambda: os.system('cls')
@@ -23,13 +24,13 @@ def inventaire():
         compteur +=1
     print(result)
     if dropOrUse == "utiliser":
-        choixAction = input("Quel objet voulez vous utiliser ? (par ID, rien pour sortir) ")
+        choixAction = int(input("Quel objet voulez vous utiliser ? (par ID, rien pour sortir) "))
         if choixAction != "rien":
-            while not choixAction.isdigit() or int(choixAction) > (len(VarC.sac) - 1) or int(choixAction) < 0:
+            while choixAction > (len(VarC.sac) - 1) or choixAction < 0:
                 choixAction = input(f"entre 0 et {(len(VarC.sac)) - 1}: ")
-            consumItem = FBag.useAnItem(VarC.sac[int(choixAction)], VarC.statSoif, VarC.statFaim, VarC.statSommeil)
+            consumItem = FBag.useAnItem(VarC.sac[choixAction], VarC.statSoif, VarC.statFaim, VarC.statSommeil)
             if consumItem[0]:
-                del VarC.sac[int(choixAction)]
+                del VarC.sac[choixAction]
             VarC.statSoif = consumItem[3]
             VarC.statFaim = consumItem[4]
             VarC.statSommeil = consumItem[2]
@@ -39,11 +40,10 @@ def inventaire():
         if testMap == ".":
             VarC.prevMoove = "Vous avez tenter de deposer un objet mais la place était deja prise"
         else:
-            choixAction = input("Quel objet voulez vous deposer ? (par ID, rien pour sortir) ")
+            choixAction = int(input("Quel objet voulez vous deposer ? (par ID, rien pour sortir) "))
             if choixAction != "rien":
-                while not choixAction.isdigit() or int(choixAction) > (len(VarC.sac) - 1) or int(choixAction) < 0:
+                while choixAction > (len(VarC.sac) - 1) or choixAction < 0:
                     choixAction = input(f"entre 0 et {(len(VarC.sac)) - 1}: ")
-                choixAction = int(choixAction)
                 if choixAction < 4 or VarC.sac[choixAction] == "clef d'or" or VarC.sac[choixAction] == "clef d'argent" or VarC.sac[choixAction] == "clef de bronze":
                     VarC.prevMoove = "Cet objet ne peux pas etre deposer, il est trop important"
                 else:
@@ -53,7 +53,7 @@ def inventaire():
                     variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = "."
                     print("Vous avez bien deposer votre objet")
                     VarC.prevMoove = "Depot d'un objet"
-
+    
 
 def dormir():
     nbHeure = int(input("Combien d'heure voulez vous dormir ? "))

@@ -101,6 +101,15 @@ def debutDuJeux():
     print("pour revoir les règles, saississez 'regle'")
     return nomJoueur
 
+def printMystere():
+    print("                    ___")
+    print("                   /III\\")
+    print("                  /{= =}\__")
+    print("                  |_\-/_|  \\")
+    print("             jjs  |-| |-|{ |")
+    print("                 /-_--_'-nn/")
+    print("                nnn/  nnn|")
+
 def printBag():
     print("                :*-")
     print("            =--+    =: *:")
@@ -121,3 +130,22 @@ def printBag():
     print(" #:                          #")
     print("  *@:                     +@#")
     print("     :#=*+++**=***+*+:     ")
+
+def printRegleMystere():
+    print()
+    print("En haut de la falaise en bordure de forêt, pas très loin de la plage, \ntu découvres la statue d’un Sphinx avec une grosse clé en bronze posée sur les pattes.")
+    print("Lorsque tu t’en approches, les yeux de la statue s’illuminent et une voix se fait entendre :")
+    print("« Bonjour explorateur ! Pour ouvrir la porte de la montagne, atteindre le cœur de l’île \net rejoindre tes compagnons, tu devras tout d’abord prouver ta valeur individuelle \nen gagnant les 3 clés que tu obtiendras en relevant les défis appropriés. Ceci est le premier d’entre eux. »")
+    print("Il est bien entendu impossible de prendre la clé (qui semble collée aux pattes du Sphinx) \ntant que le défi n’est pas gagné.")
+    print("La voix poursuit : « 3 fois de suite, tu devras deviner le nombre que j’ai en tête, \ntu as 20 essais maximum pour tous les trouver, es-tu prêt ? »")
+
+
+
+
+
+
+
+
+
+
+

@@ -3,6 +3,7 @@ import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
 import fileFunction.FunctionPrint as FPrint
 import fileFunction.variableClassic as VarC
+import fileFunction.FunctionGame as FGame
 import os
 clear = lambda: os.system('cls')
 
@@ -49,15 +50,15 @@ def printMap (y, x, map1):
                 ligne = str(ligne) + VarC.avatar
             else:
                 if str(map1[compteur1][compteur2]) == "*":
-                    ligne = f"{ligne}\033[33m{map1[compteur1][compteur2]}\033[37m"
+                    ligne = f"{ligne}\033[33m{map1[compteur1][compteur2]}\033[0m"
                 elif str(map1[compteur1][compteur2]) == "~":
-                    ligne = f"{ligne}\033[36m{map1[compteur1][compteur2]}\033[37m"
+                    ligne = f"{ligne}\033[36m{map1[compteur1][compteur2]}\033[0m"
                 elif str(map1[compteur1][compteur2]) == "█":
-                    ligne = f"{ligne}\033[31m{map1[compteur1][compteur2]}\033[37m"
+                    ligne = f"{ligne}\033[31m{map1[compteur1][compteur2]}\033[0m"
                 elif str(map1[compteur1][compteur2]) == "M":
-                    ligne = f"{ligne}\033[35m{map1[compteur1][compteur2]}\033[37m"
+                    ligne = f"{ligne}\033[35m{map1[compteur1][compteur2]}\033[0m"
                 elif str(map1[compteur1][compteur2]) == "♣":
-                    ligne = f"{ligne}\033[32m{map1[compteur1][compteur2]}\033[37m"
+                    ligne = f"{ligne}\033[32m{map1[compteur1][compteur2]}\033[0m"
                 else:
                     ligne = str(ligne) + str(map1[compteur1][compteur2])
             compteur2 = compteur2 + 1
