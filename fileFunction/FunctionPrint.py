@@ -139,7 +139,22 @@ def printRegleMystere():
     print("Il est bien entendu impossible de prendre la clé (qui semble collée aux pattes du Sphinx) \ntant que le défi n’est pas gagné.")
     print("La voix poursuit : « 3 fois de suite, tu devras deviner le nombre que j’ai en tête, \ntu as 20 essais maximum pour tous les trouver, es-tu prêt ? »")
 
+def printCesar():
+    print("             / ,(//            /((. /         "    )
+    print("           *((*                     ((          "  )
+    print("         (( /*((/               ./((., /*         ")
+    print("         ((,*(((                  ((/..((         ")
+    print("       ,/*    *                   *.  . /(        ")
+    print("        ((,,(/.                    /(( /(/        ")
+    print("       ((/   /(                   ,// . //*       ")
+    print("         ((,,  (( (            ( ((  /*//         ")
+    print("         #(((. ( (/( (*    /( (/, (.*(((#         ")
+    print("             ,**.,*  ##*  ((( *.* */.             ")
+    print("             .(*  */( *(  (,.((   */           "   )
+    print("                 ./* (      / */     ")
 
+def printRegleCesar():
+    print("Ce jeux est galere, demerde-toi mais si tu gagne tu aura la clef d'argent")
 
 
 

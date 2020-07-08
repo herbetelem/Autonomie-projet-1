@@ -13,7 +13,7 @@ def createItemSlot(items):
             x = random.randint(9, 88)
             check = FMap.checkDeplacement(
                 y, x, "deplacement", variableMap.mapBinInATab)
-            while check == "ko":
+            while check == "ko" or variableMap.mapInATab[y][x] != " ":
                 y = random.randint(3, 22)
                 x = random.randint(9, 88)
                 check = FMap.checkDeplacement(

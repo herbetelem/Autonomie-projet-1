@@ -89,3 +89,78 @@ def jeuxNombreMystere():
         print("c'est dommage, vous avez mis trop de tour pour trouver la solution, reessayer plus tard")
         input("Si vous êtes prets a continuer apuyer sur entrer")
         VarC.positionJoueurX = VarC.positionJoueurX + 1
+
+def jeuxCodeCesar():
+    clear()
+    FPrint.printCesar()
+    FPrint.printRegleCesar()
+    input("Appuyer sur Entrer pour continuer")
+    clear()
+    code = input("Choisissez la lettre code : ")
+    while len(code) > 1:
+        code = input("une seul lettre")
+    code = code.lower()
+    print("Voici le credo avec le code")
+    print(codeCesar(code, VarG.credo))
+    tour = 0
+
+    while tour < 5:
+        FPrint.printCesar()
+        print("saisissez une lettre pour coder le credo avec celle ci")
+        print("saisissez Entrer pour voir le credo normal")
+        print("saisissez plusieur lettres pour faire une tentative de trouver votre nom")
+        actionJoueur = input("Votre saisie : ")
+        clear()
+        if len(actionJoueur) == 0:
+            print("Le credo en clair est")
+            print(VarG.credo)
+        elif len(actionJoueur) == 1:
+            print(f"Le credo avec le code {actionJoueur}")
+            print(codeCesar(actionJoueur, VarG.credo))
+        elif len(actionJoueur) > 1:
+            tour += 1
+            tentative = decryptCodeCesar(code, actionJoueur)
+            print("Votre saisi decrypter donne :")
+            print(tentative)
+            input(f"Tentative {tour}/5 appuyer sur entrer pour essayer")
+            if tentative == VarC.nomJoueur.lower():
+                print("bravo vous avez gagné la clef d'argent.")
+                print("Vous la ranger immédiatement dans votre sac.")
+                VarC.sac.append("clef d'argent")
+                variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+                tour = 6
+                input("entrer pour continuer")
+            else:
+                print("Votre saisi ne corespond pas a votre nom")
+    if tour == 5:
+        VarC.prevMoove = "Malheureusment vous avez mis plus de 5 tentative a trouver votre nom, reessayer plus tard"
+        VarC.positionJoueurX = VarC.positionJoueurX - 1
+
+def letterToNb(letter):
+    letter = letter.lower()
+    for i in range(0, len(VarG.listeAlphabet)):
+        if VarG.listeAlphabet[i] == letter:
+            return i
+
+
+def codeCesar(clef, mots):
+    clef = clef.lower()
+    clef = letterToNb(clef)
+    mots = list(mots)
+    for i in range(0, len(mots)):
+        if mots[i] != " ":
+            lettreX = letterToNb(mots[i])
+            mots[i] = VarG.listeAlphabet2[lettreX+clef]
+    mots = ''.join(mots)
+    return mots
+
+def decryptCodeCesar(clef, mots):
+    clef = clef.lower()
+    clef = letterToNb(clef)
+    mots = list(mots)
+    for i in range(0, len(mots)):
+        if mots[i] != " ":
+            lettreX = letterToNb(mots[i])
+            mots[i] = VarG.listeAlphabet2[lettreX-clef]
+    mots = ''.join(mots)
+    return mots

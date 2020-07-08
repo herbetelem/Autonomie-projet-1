@@ -5,6 +5,7 @@ import fileFunction.FunctionMain as FMain
 import fileFunction.FunctionPrint as FPrint
 import fileFunction.FunctionGame as FGame
 import fileFunction.variableClassic as VarC
+import random
 import os
 clear = lambda: os.system('cls')
 
@@ -26,7 +27,24 @@ def Main():
 
     print()
     while VarC.statutParti == "ok":
-        if variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "£":
+        if variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "@":
+            if "clef d'or" in VarC.sac and "clef d'argent" in VarC.sac and "clef de bronze" in VarC.sac:
+                FPrint.gameWin(VarC.nomJoueur)
+            else:
+                VarC.prevMoove = "Vous avez essayé de sortir du jeu sans toute les clefs, \n                                    un singe vous assome et vous traine quelque part dans l'ile"
+                punitionY = random.randint(0, len(variableMap.mapInATab) - 1)
+                punitionX = random.randint(0, len(variableMap.mapInATab[0]) - 1)
+                while variableMap.mapInATab[punitionY][punitionX] != " ":
+                    punitionY = random.randint(0, len(variableMap.mapInATab) - 1)
+                    punitionX = random.randint(0, len(variableMap.mapInATab[0]) - 1)
+                VarC.positionJoueurY = punitionY
+                VarC.positionJoueurX = punitionX
+                
+        elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "£":
+            FGame.jeuxNombreMystere()
+        elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "$":
+            FGame.jeuxCodeCesar()
+        elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "€":
             recompense = FGame.jeuxNombreMystere()
         else:
             action = input("Que souhaitez vous faire ? ")
