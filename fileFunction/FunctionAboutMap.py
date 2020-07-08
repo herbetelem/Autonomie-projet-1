@@ -60,6 +60,8 @@ def printMap (y, x, map1):
 
 def sleepHour(nbHeure, statSommeil, statSoif, statFaim):
     statSommeil = statSommeil + nbHeure * 6
+    if statSommeil > 100:
+        statSommeil = 100
     statFaim = statFaim - nbHeure * 1
     statSoif = statSoif - nbHeure * 2
     return statSommeil, statFaim, statSoif

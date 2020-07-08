@@ -1,6 +1,3 @@
-import fileFunction.debutDuJeux as fileDebutDuJeux
-import fileFunction.printRegle as filePrintRegle
-import fileFunction.printTouche as filePrintTouche
 import fileFunction.variableMap as variableMap
 import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
@@ -13,7 +10,7 @@ clear = lambda: os.system('cls')
 
 
 # Call all the function
-VarC.nomJoueur = fileDebutDuJeux.debutDuJeux()
+VarC.nomJoueur = FPrint.debutDuJeux()
 reponse = ["oui", "yes", "si"]
 question = str(input("Est ce que vous êtes pret ? "))
 while question not in reponse:
@@ -34,50 +31,19 @@ while VarC.statutParti == "ok":
         action = input(f"Vous pouvez {VarC.actionPossible}")
     
     if action == "regle":
-        filePrintRegle.printRegle()
+        FPrint.printRegle()
     
     elif action == "touche":
-        filePrintTouche.printTouche()
+        FPrint.printTouche()
     
     elif action == "bouger":
         FMain.bouger()
 
     elif action == "dormir":
-        nbHeure = int(input("Combien d'heure voulez vous dormir ? "))
-        goSleep = FMap.sleepHour(nbHeure, VarC.statSommeil, VarC.statSoif, VarC.statFaim)
-        VarC.statSommeil = goSleep[0]
-        VarC.statFaim = goSleep[1]
-        VarC.statSoif = goSleep[2]
-        VarC.prevMoove = "dormir"
+        FMain.dormir()
     
     elif action == "inventaire":
-        clear()
-        FPrint.printBag()
-        print()
-        dropOrUseModel = ["deposer", "utiliser"]
-        dropOrUse = input("vous voulez deposer un objet ou en utiliser un ? ")
-        while dropOrUse not in dropOrUseModel:
-            dropOrUse = input(f"seulement {dropOrUseModel}")
-        print(f"Vous disposer actuellement dans votre sac de :")
-        compteur = 0
-        result = ""
-        for i in VarC.sac:
-            result = f"{result} {compteur}: {i}\n"
-            compteur +=1
-        print(result)
-        choixAction = input("Avec quel objet ? (par ID, rien pour sortir) ")
-        if choixAction == "rien":
-            FMap.endTurn()
-            continue
-        while not choixAction.isdigit() or int(choixAction) > (len(VarC.sac) - 1) or int(choixAction) < 0:
-            choixAction = input(f"entre 0 et {(len(VarC.sac)) - 1}: ")
-        consumItem = FBag.useAnItem(VarC.sac[int(choixAction)], VarC.statSoif, VarC.statFaim, VarC.statSommeil)
-        if consumItem[0]:
-            del VarC.sac[int(choixAction)]
-        VarC.statSoif = consumItem[3]
-        VarC.statFaim = consumItem[4]
-        VarC.statSommeil = consumItem[2]
-        VarC.prevMoove = consumItem[1]
+        FMain.inventaire()
 
     if VarC.statFaim <= 0 or VarC.statSoif <= 0 or VarC.statSommeil <= 0:
         VarC.statutParti = "ko"
