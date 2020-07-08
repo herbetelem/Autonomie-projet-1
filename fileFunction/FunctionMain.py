@@ -80,12 +80,16 @@ def bouger():
     else:
         if direction == "z":
             VarC.positionJoueurY = VarC.positionJoueurY - 1
+            VarC.avatar = "▲"
         elif direction == "s":
             VarC.positionJoueurY = VarC.positionJoueurY + 1
+            VarC.avatar = "▼"
         elif direction == "q":
             VarC.positionJoueurX = VarC.positionJoueurX - 1
+            VarC.avatar = "◄"
         elif direction == "d":
             VarC.positionJoueurX = VarC.positionJoueurX + 1
+            VarC.avatar = "►"
     
     VarC.statSommeil = VarC.statSommeil - 3
     VarC.statSoif = VarC.statSoif - 2

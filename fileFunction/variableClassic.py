@@ -1,5 +1,5 @@
 nomJoueur = ""
-avatar = 0
+avatar = "∇"
 statSoif = 100
 statFaim = 100
 statSommeil = 100

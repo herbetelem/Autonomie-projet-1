@@ -1,6 +1,3 @@
-import fileFunction.debutDuJeux as fileDebutDuJeux
-import fileFunction.printRegle as filePrintRegle
-import fileFunction.printTouche as filePrintTouche
 import fileFunction.variableMap as variableMap
 import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
@@ -49,9 +46,20 @@ def printMap (y, x, map1):
         ligne = ""
         while compteur2 < len(map1[0]):
             if compteur1 == y and compteur2 == x:
-                ligne = str(ligne) + "∇"
+                ligne = str(ligne) + VarC.avatar
             else:
-                ligne = str(ligne) + str(map1[compteur1][compteur2])
+                if str(map1[compteur1][compteur2]) == "*":
+                    ligne = f"{ligne}\033[33m{map1[compteur1][compteur2]}\033[37m"
+                elif str(map1[compteur1][compteur2]) == "~":
+                    ligne = f"{ligne}\033[36m{map1[compteur1][compteur2]}\033[37m"
+                elif str(map1[compteur1][compteur2]) == "█":
+                    ligne = f"{ligne}\033[31m{map1[compteur1][compteur2]}\033[37m"
+                elif str(map1[compteur1][compteur2]) == "M":
+                    ligne = f"{ligne}\033[35m{map1[compteur1][compteur2]}\033[37m"
+                elif str(map1[compteur1][compteur2]) == "♣":
+                    ligne = f"{ligne}\033[32m{map1[compteur1][compteur2]}\033[37m"
+                else:
+                    ligne = str(ligne) + str(map1[compteur1][compteur2])
             compteur2 = compteur2 + 1
         compteur1 = compteur1 + 1
         print(ligne)
