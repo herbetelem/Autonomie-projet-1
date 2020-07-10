@@ -6,3 +6,6 @@ with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileFunction/data
         if len(test) > 2:
             test = test.replace("\n","")
             print(test)
+
+def loadVarClassic():
+    
