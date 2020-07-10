@@ -156,6 +156,32 @@ def printCesar():
 def printRegleCesar():
     print("Ce jeux est galere, demerde-toi mais si tu gagne tu aura la clef d'argent")
 
+def printFizzBuzz():
+    print("                      __------__")
+    print("                    /~          ~\ ")
+    print("                   |    //^\//^\|    ")      
+    print("                 /~~\  ||  o| |o|:~\ ") 
+    print("                | |6   ||___|_|_||:| ")     
+    print("                 \__.  /      o  \/' ")   
+    print("                  |   (       O   ) ")
+    print("         /~~~~\    `\  \         /")
+    print("        | |~~\ |     )  ~------~`\ ")
+    print("       /' |  | |   /     ____ /~~~)\ ")
+    print("      (_/'   | | |     /'    |    ( |")
+    print("             | | |     \    /   __)/ \ ")
+    print("             \  \ \      \/    /' \   `\ ")
+    print("               \  \|\        /   | |\___|")
+    print("                 \ |  \____/     | |")
+    print("                 /^~>  \        _/ <")
+    print("                |  |         \       \ ")
+    print("                |  | \        \        \ ")
+    print("                -^-\  \       |        )")
+    print("                     `\_______/^\______/")
+
+def printRegleFizz():
+    print("Regarde il n'y a rien a faire")
+
+
 
 
 

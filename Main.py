@@ -1,3 +1,4 @@
+# Import de mes fichiers et des libs
 import fileFunction.variableMap as variableMap
 import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
@@ -12,10 +13,11 @@ clear = lambda: os.system('cls')
 
 def Main():
     # Call all the function
+    # appelle de la fonction pour demander le nom du joueur et print les regles
     VarC.nomJoueur = FPrint.debutDuJeux()
-    reponse = ["oui", "yes", "si"]
+    #
     question = str(input("Est ce que vous êtes pret ? "))
-    while question not in reponse:
+    while question not in VarC.reponseDebut:
         question = str(input("Prenez votre temps et dite moi quand vous serez prêt ! "))
 
     print()
@@ -45,7 +47,7 @@ def Main():
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "$":
             FGame.jeuxCodeCesar()
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "€":
-            recompense = FGame.jeuxNombreMystere()
+            FGame.jeuxFizzBuzz()
         else:
             action = input("Que souhaitez vous faire ? ")
             
@@ -75,6 +77,6 @@ def Main():
     if VarC.statutParti == "ko":
         FPrint.gameOver()
 
-
+# truc d'Alain pour appeler le main propre
 if __name__ == "__main__":
     Main()

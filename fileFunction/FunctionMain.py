@@ -24,8 +24,9 @@ def inventaire():
         compteur +=1
     print(result)
     if dropOrUse == "utiliser":
-        choixAction = int(input("Quel objet voulez vous utiliser ? (par ID, rien pour sortir) "))
+        choixAction = input("Quel objet voulez vous utiliser ? (par ID, rien pour sortir) ")
         if choixAction != "rien":
+            choixAction = int(choixAction)
             while choixAction > (len(VarC.sac) - 1) or choixAction < 0:
                 choixAction = input(f"entre 0 et {(len(VarC.sac)) - 1}: ")
             consumItem = FBag.useAnItem(VarC.sac[choixAction], VarC.statSoif, VarC.statFaim, VarC.statSommeil)
@@ -40,8 +41,9 @@ def inventaire():
         if testMap == ".":
             VarC.prevMoove = "Vous avez tenter de deposer un objet mais la place était deja prise"
         else:
-            choixAction = int(input("Quel objet voulez vous deposer ? (par ID, rien pour sortir) "))
+            choixAction = input("Quel objet voulez vous deposer ? (par ID, rien pour sortir) ")
             if choixAction != "rien":
+                choixAction = int(choixAction)
                 while choixAction > (len(VarC.sac) - 1) or choixAction < 0:
                     choixAction = input(f"entre 0 et {(len(VarC.sac)) - 1}: ")
                 if choixAction < 4 or VarC.sac[choixAction] == "clef d'or" or VarC.sac[choixAction] == "clef d'argent" or VarC.sac[choixAction] == "clef de bronze":

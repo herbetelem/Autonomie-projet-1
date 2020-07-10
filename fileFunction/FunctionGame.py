@@ -6,6 +6,8 @@ import fileFunction.FunctionPrint as FPrint
 import fileFunction.FunctionGame as FGame
 import fileFunction.variableClassic as VarC
 import fileFunction.variableGame as VarG
+import random
+import time
 import os
 clear = lambda: os.system('cls')
 
@@ -14,7 +16,7 @@ def jeuxNombreMystere():
     clear()
     FPrint.printMystere()
     FPrint.printRegleMystere()
-    test = input("Taper entrer pour continuer")    
+    input("Taper entrer pour continuer")    
     clear()
     tour = 0
     nombreTrouve = 0
@@ -90,6 +92,7 @@ def jeuxNombreMystere():
         input("Si vous êtes prets a continuer apuyer sur entrer")
         VarC.positionJoueurX = VarC.positionJoueurX + 1
 
+
 def jeuxCodeCesar():
     clear()
     FPrint.printCesar()
@@ -97,6 +100,7 @@ def jeuxCodeCesar():
     input("Appuyer sur Entrer pour continuer")
     clear()
     code = input("Choisissez la lettre code : ")
+    # code = VarG.listeAlphabet[random.randint(1, 26)]
     while len(code) > 1:
         code = input("une seul lettre")
     code = code.lower()
@@ -142,7 +146,6 @@ def letterToNb(letter):
         if VarG.listeAlphabet[i] == letter:
             return i
 
-
 def codeCesar(clef, mots):
     clef = clef.lower()
     clef = letterToNb(clef)
@@ -164,3 +167,69 @@ def decryptCodeCesar(clef, mots):
             mots[i] = VarG.listeAlphabet2[lettreX-clef]
     mots = ''.join(mots)
     return mots
+
+
+def jeuxFizzBuzz():
+    clear()
+    FPrint.printFizzBuzz()
+    FPrint.printRegleFizz()
+    listeJoueur = list(VarG.listeSinge)
+    listeJoueur[10][0] = VarC.nomJoueur
+    joueurStatut = "ok"
+    input("Taper entrer pour continuer")
+    while len(listeJoueur) > 1 and joueurStatut == "ok":
+        clear()
+        FPrint.printFizzBuzz()
+        print()
+        print(f"Joueur dans la parti {len(listeJoueur)}/11")
+        print()
+        statutManche = "ok"
+        depart = 1
+        while statutManche == "ok":
+            for joueur in listeJoueur:
+                if statutManche == "ok":
+                    if depart % 3 == 0 and depart % 5 == 0:
+                        if joueur[1] > random.randint(1, 100):
+                            print(f"{joueur[0]} : FizzBuzz")
+                        else:
+                            print(f"{joueur[0]} : {depart}")
+                            print(f"Erreur de {joueur[0]}, vas ramassez des bananes")
+                            indexJoueur = listeJoueur.index([joueur[0], joueur[1]])
+                            del listeJoueur[indexJoueur]
+                            statutManche = "ko"
+                    elif depart % 3 == 0:
+                        if joueur[1] > random.randint(1, 100):
+                            print(f"{joueur[0]} : Fizz")
+                        else:
+                            print(f"{joueur[0]} : {depart}")
+                            print(f"Erreur de {joueur[0]}, vas ramassez des bananes")
+                            indexJoueur = listeJoueur.index([joueur[0], joueur[1]])
+                            del listeJoueur[indexJoueur]
+                            statutManche = "ko"
+                    elif depart % 5 == 0:
+                        if joueur[1] > random.randint(1, 100):
+                            print(f"{joueur[0]} : Buzz")
+                        else:
+                            print(f"{joueur[0]} : {depart}")
+                            print(f"Erreur de {joueur[0]}, vas ramassez des bananes")
+                            indexJoueur = listeJoueur.index([joueur[0], joueur[1]])
+                            del listeJoueur[indexJoueur]
+                            statutManche = "ko"
+                    else:
+                        print(f"{joueur[0]} : {depart}")
+                    if statutManche == "ko":
+                        if joueur[0] == VarC.nomJoueur:
+                            joueurStatut = "ko"
+                    depart += 1
+                    time.sleep(1)
+    if joueurStatut == "ok":
+        print(f"{listeJoueur[0][0]} a gagné la parti, vous prenez la clef d'or et partez")
+        VarC.sac.append("clef d'or")
+        variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+        input("Taper entrer pour continuer")
+    else:
+        VarC.prevMoove = "Malheureusment vous avez perdu au FizzBuzz, reessayer plus tard"
+        VarC.positionJoueurX = VarC.positionJoueurX - 1
+        print("vous avez perdu")
+        input("Taper entrer pour continuer")
+    
