@@ -1,16 +1,20 @@
+# Import des librairie
 import random
 import fileFunction.FunctionAboutMap as FMap
 import fileFunction.variableMap as variableMap
 
 # [["item", nombre d'item, x1, y1, x2, y2, etc], etc ...]
 
-
+# fonctino pour creer les slot pour chaque item
 def createItemSlot(items):
     for index in items:
         compteur = 0
+        # tant que mon compteur est inferieur au nombre d'item a creer
         while compteur < index[1]:
+            # je genere random une position x et y
             y = random.randint(3, 22)
             x = random.randint(9, 88)
+            # je verifie que les coordonée soit libre et si c'est ko je recommence jusqu'a ce que soit ok
             check = FMap.checkDeplacement(
                 y, x, "deplacement", variableMap.mapBinInATab)
             while check == "ko" or variableMap.mapInATab[y][x] != " ":
@@ -18,15 +22,19 @@ def createItemSlot(items):
                 x = random.randint(9, 88)
                 check = FMap.checkDeplacement(
                     y, x, "deplacement", variableMap.mapBinInATab)
+            # si c'est bon j'ajoute X et Y dans le tablea de l'objet
             index.append(x)
             index.append(y)
             compteur += 1
     return items
 
 
+# Fonctino qui liste l'interrieur du sac
 def intoMyBag(bag, limitBag):
+    # la place restante est :
     placeRestant = limitBag - len(bag)
     returned = "vous avez dans votre sac ["
+    # je parcours mon sac et je l'affiche
     for index in bag:
         if index == bag[len(bag) - 1]:
             if isinstance(index, list):
@@ -41,15 +49,17 @@ def intoMyBag(bag, limitBag):
     returned = f"{returned} ]. Il vous reste {placeRestant} de places dans votre sac"
     print(returned)
 
-
+# fonction pour suprimer un objet
 def dellAnItem(x, y, itemList, nomItem):
     indexItem = 0
     index = 0
+    # petite boucle pour trouver l'index de l'item a suprimer
     while index < len(itemList):
         if itemList[index][0] == nomItem:
             indexItem = index
         index += 1
     compteur = 2
+    # petite boucle pour trouver les deux coordonée et les suprimer du tableau
     while compteur < len(itemList[indexItem]):
         if itemList[indexItem][compteur] == x and itemList[indexItem][compteur+1] == y:
             del itemList[indexItem][compteur]
@@ -57,9 +67,10 @@ def dellAnItem(x, y, itemList, nomItem):
         compteur += 2
     return itemList
 
-
+# foncton pour utiliser un objet
 def useAnItem(item, soif, faim, sommeil):
-    if item in ["PC portable", "chargeur solaire", "couteau suisse", "carte"]:
+    # je verifis que l'item ne sois pas deletable apres use et j'utilise l'objet
+    if item in ["PC portable", "chargeur solaire", "couteau suisse", "carte", "clef de bronze", "clef d'argent", "clef d'or"]:
         itemDelete = False
         if item == "PC portable":
             phrase = "Apres avoir regarder un episode de big bang theorie sur netflix\nVous relevez la tete et vous rendez compte avoir perdu 3h"
@@ -78,6 +89,10 @@ def useAnItem(item, soif, faim, sommeil):
         if item == "carte":
             phrase = "vous utilisez deja votre carte pour vous deplacer"
             return itemDelete, phrase, sommeil, soif, faim
+        if item == "clef de bronze" or item == "clef d'argent" or item == "clef d'or":
+            phrase = "vous pourrez utiliser les clefs que une fois a la porte final"
+            return itemDelete, phrase, sommeil, soif, faim
+    # sinon l'objet sera suprimer apres utilisation et j'utilise l'objet
     else:
         itemDelete = True
         if item == "bouteille d'eau":

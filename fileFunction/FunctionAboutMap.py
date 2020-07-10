@@ -1,3 +1,4 @@
+# import des fichiers
 import fileFunction.variableMap as variableMap
 import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
@@ -7,8 +8,9 @@ import fileFunction.FunctionGame as FGame
 import os
 clear = lambda: os.system('cls')
 
-
+# fonction pour verifier que le deplacement est possible
 def checkDeplacement(y, x, deplacement, mapBinaire):
+    # je modifie la position par rapport au deplacement
     if deplacement == "z":
         y = y - 1
     elif deplacement == "s":
@@ -17,18 +19,17 @@ def checkDeplacement(y, x, deplacement, mapBinaire):
         x = x - 1
     elif deplacement == "d":
         x = x + 1
-
+    # je recupere la position du joueur et je verifie que c'est un 1 et pas un 0
     var = mapBinaire[y][x]
 
     if mapBinaire[y][x] == "1":
         return "ok"
-    elif mapBinaire[y][x] == "2":
-        return "win"
     else:
         return "ko"
 
-
+# fonction qui vas verifier si le joueur est sur un item
 def checkItemPosition(playerX, playerY, listItems):
+
     result = None
     for index in listItems:
         pointer = 2
@@ -38,17 +39,22 @@ def checkItemPosition(playerX, playerY, listItems):
             pointer += 2
     return result
 
-
+# fonction pour imprimer la map
 def printMap (y, x, map1):
+    # compteur1 represente l'axe Y
     compteur1 = 0
     print()
     while compteur1 < len(map1):
+    # compteur1 represente l'axe X
         compteur2 = 0
+        # je reinitialise ma var ligne qui represente la ligne en cours d'impression
         ligne = ""
         while compteur2 < len(map1[0]):
+            # si le caractere actuel est a la coordoné de l'avatar alor je print l'avatar
             if compteur1 == y and compteur2 == x:
                 ligne = str(ligne) + VarC.avatar
             else:
+                # je verifie et si oui j'ajoute la couleur
                 if str(map1[compteur1][compteur2]) == "*":
                     ligne = f"{ligne}\033[33m{map1[compteur1][compteur2]}\033[0m"
                 elif str(map1[compteur1][compteur2]) == "~":
