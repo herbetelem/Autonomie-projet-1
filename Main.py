@@ -53,11 +53,23 @@ def Main():
         # je verifie si il est a la position d'un jeu et si oui je lance le jeux
         #------------------------------------------------------------------------------
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "£":
-            FGame.jeuxNombreMystere()
+            if len(sac) == VarC.limitSac:
+                print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
+                VarC.positionJoueurX = VarC.positionJoueurX + 1
+            else:
+                FGame.jeuxNombreMystere()
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "$":
-            FGame.jeuxCodeCesar()
+            if len(sac) == VarC.limitSac:
+                print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
+                VarC.positionJoueurX = VarC.positionJoueurX - 1
+            else:
+                FGame.jeuxCodeCesar()
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "€":
-            FGame.jeuxFizzBuzz()
+            if len(sac) == VarC.limitSac:
+                print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
+                VarC.positionJoueurX = VarC.positionJoueurX - 1
+            else:
+                FGame.jeuxFizzBuzz()
         #------------------------------------------------------------------------------
 
         else:

@@ -69,10 +69,12 @@ def printMap (y, x, map1):
                     ligne = str(ligne) + str(map1[compteur1][compteur2])
             compteur2 = compteur2 + 1
         compteur1 = compteur1 + 1
+        # j'imprime les lignes une a une
         print(ligne)
     print()
     print()
 
+# fonction qui permet de dormier
 def sleepHour(nbHeure, statSommeil, statSoif, statFaim):
     statSommeil = statSommeil + nbHeure * 6
     if statSommeil > 100:
@@ -81,6 +83,7 @@ def sleepHour(nbHeure, statSommeil, statSoif, statFaim):
     statSoif = statSoif - nbHeure * 2
     return statSommeil, statFaim, statSoif
 
+# ajouter les item dans la carte
 def addItemPointOnMap(map1, items):
     for index in items:
         positionItemsIndex = 2
@@ -92,6 +95,7 @@ def addItemPointOnMap(map1, items):
             positionItemsIndex += 2
     return map1
 
+# fonction fin de tour qui imprime la carte et les stats
 def endTurn():
     clear()
     FMap.printMap(VarC.positionJoueurY, VarC.positionJoueurX, variableMap.mapInATab)
