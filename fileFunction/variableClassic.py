@@ -32,3 +32,5 @@ actionPossible = 0
 directionPossible = 0
 itemActionPossible = 0
 reponseDebut = 0
+tourJoueur = 0
+actionJoueur = 0

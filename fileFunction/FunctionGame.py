@@ -277,8 +277,8 @@ def jeuxFizzBuzz():
         VarC.sac.append("clef d'or")
         variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
         input("Taper entrer pour continuer")
-    # sinon il perd et bah c'est balo
     
+    # sinon il perd et bah c'est balo
     else:
         VarC.prevMoove = "Malheureusment vous avez perdu au FizzBuzz, reessayer plus tard"
         VarC.positionJoueurX = VarC.positionJoueurX - 1

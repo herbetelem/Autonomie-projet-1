@@ -58,18 +58,21 @@ def Main():
                 VarC.positionJoueurX = VarC.positionJoueurX + 1
             else:
                 FGame.jeuxNombreMystere()
+                VarC.actionJoueur += 1
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "$":
             if len(sac) == VarC.limitSac:
                 print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
                 VarC.positionJoueurX = VarC.positionJoueurX - 1
             else:
                 FGame.jeuxCodeCesar()
+                VarC.actionJoueur += 1
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "€":
             if len(sac) == VarC.limitSac:
                 print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
                 VarC.positionJoueurX = VarC.positionJoueurX - 1
             else:
                 FGame.jeuxFizzBuzz()
+                VarC.actionJoueur += 1
         #------------------------------------------------------------------------------
 
         else:
@@ -88,12 +91,15 @@ def Main():
             
             elif action == "bouger":
                 FMain.bouger()
+                VarC.tourJoueur += 1
 
             elif action == "dormir":
                 FMain.dormir()
+                VarC.actionJoueur += 1
             
             elif action == "inventaire":
                 FMain.inventaire()
+                VarC.actionJoueur += 1
 
             # je verifie que le joueur ai encore des stats pour continuer
             if VarC.statFaim <= 0 or VarC.statSoif <= 0 or VarC.statSommeil <= 0:
