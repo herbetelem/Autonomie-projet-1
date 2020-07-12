@@ -45,3 +45,6 @@ def loadVarClassic():
     VarC.directionPossible = varLoad[13]
     VarC.itemActionPossible = varLoad[14]
     VarC.reponseDebut = varLoad[15]
+
+
+def loadVarMap():
