@@ -5,7 +5,7 @@ import fileFunction.variableMap as variableMap
 
 # [["item", nombre d'item, x1, y1, x2, y2, etc], etc ...]
 
-# fonctino pour creer les slot pour chaque item
+# fonction pour creer les slot pour chaque item
 def createItemSlot(items):
     for index in items:
         compteur = 0
@@ -29,8 +29,7 @@ def createItemSlot(items):
             compteur += 1
     return items
 
-
-# Fonctino qui liste l'interrieur du sac
+# Fonction qui liste l'interrieur du sac
 def intoMyBag(bag, limitBag):
     # la place restante est :
     placeRestant = limitBag - len(bag)
@@ -68,7 +67,7 @@ def dellAnItem(x, y, itemList, nomItem):
         compteur += 2
     return itemList
 
-# foncton pour utiliser un objet
+# fonction pour utiliser un objet
 def useAnItem(item, soif, faim, sommeil):
     # je verifis que l'item ne sois pas deletable apres use et j'utilise l'objet
     if item in ["PC portable", "chargeur solaire", "couteau suisse", "carte", "clef de bronze", "clef d'argent", "clef d'or"]:
