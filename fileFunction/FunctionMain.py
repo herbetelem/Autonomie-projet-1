@@ -90,11 +90,11 @@ def bouger():
         direction = input("Choisissez parmis z, s, q, d, regle ou touche ! ")
 
     # je verifie que le joueur peux s'y deplacer
-    check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, variableMap.mapBinInATab)
+    check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, variableMap.mapInATab)
     
     while check == "ko":
         direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
-        check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, variableMap.mapBinInATab)
+        check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, variableMap.mapInATab)
     # si le joueur gagne
     if check == "win":
         FPrint.gameWin(nomJoueur)

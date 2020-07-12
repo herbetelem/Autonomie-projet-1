@@ -1,6 +1,8 @@
 import sys
 
-def gameWin(nomJouteur):
+# rien a expliquer ici ce n'est que des print
+
+def gameWin(nomJouteur, tourJoueur, actionJoueur):
     print()
     print("-----------------VOUS AVEZ GAGNER------------------")
     print()	
@@ -34,6 +36,7 @@ def gameWin(nomJouteur):
     print()
     print()
     print(f"Félicitation {nomJouteur}, vous avez gagner cette partie !")
+    print(f"Vous avez gagné en fesant {VarC.tourJoueur} deplacements et {VarC.actionJoueur} actions")
     sys.exit()
 
 def gameOver():

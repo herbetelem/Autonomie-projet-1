@@ -1,3 +1,4 @@
+# les variables specifique aux jeux
 import random
 
 # var Nombre Magique

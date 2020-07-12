@@ -22,7 +22,8 @@ def checkDeplacement(y, x, deplacement, mapBinaire):
     # je recupere la position du joueur et je verifie que c'est un 1 et pas un 0
     var = mapBinaire[y][x]
 
-    if mapBinaire[y][x] == "1":
+    # if mapBinaire[y][x] == " " or mapBinaire[y][x] == "." :
+    if mapBinaire[y][x] in variableMap.slotMoove:
         return "ok"
     else:
         return "ko"

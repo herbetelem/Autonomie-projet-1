@@ -38,7 +38,7 @@ def Main():
         # je verifie si le joueur est au point de victoire avec les 3 clef
         if variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "@":
             if "clef d'or" in VarC.sac and "clef d'argent" in VarC.sac and "clef de bronze" in VarC.sac:
-                FPrint.gameWin(VarC.nomJoueur)
+                FPrint.gameWin(VarC.nomJoueur, VarC.tourJoueur, VarC.actionJoueur)
             # si il n'a pas les clef je le degage de maniere aleatoire dans un espace vide
             else:
                 VarC.prevMoove = "Vous avez essayé de sortir du jeu sans toute les clefs, \n                                    un singe vous assome et vous traine quelque part dans l'ile"
@@ -53,21 +53,21 @@ def Main():
         # je verifie si il est a la position d'un jeu et si oui je lance le jeux
         #------------------------------------------------------------------------------
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "£":
-            if len(sac) == VarC.limitSac:
+            if len(VarC.sac) == VarC.limitSac:
                 print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
                 VarC.positionJoueurX = VarC.positionJoueurX + 1
             else:
                 FGame.jeuxNombreMystere()
                 VarC.actionJoueur += 1
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "$":
-            if len(sac) == VarC.limitSac:
+            if len(VarC.sac) == VarC.limitSac:
                 print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
                 VarC.positionJoueurX = VarC.positionJoueurX - 1
             else:
                 FGame.jeuxCodeCesar()
                 VarC.actionJoueur += 1
         elif variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "€":
-            if len(sac) == VarC.limitSac:
+            if len(VarC.sac) == VarC.limitSac:
                 print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
                 VarC.positionJoueurX = VarC.positionJoueurX - 1
             else:

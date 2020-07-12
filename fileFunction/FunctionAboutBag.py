@@ -12,16 +12,17 @@ def createItemSlot(items):
         # tant que mon compteur est inferieur au nombre d'item a creer
         while compteur < index[1]:
             # je genere random une position x et y
-            y = random.randint(3, 22)
-            x = random.randint(9, 88)
+            y = random.randint(0, (len(variableMap.mapInATab)  - 1))
+            x = random.randint(0, (len(variableMap.mapInATab[0]) - 1))
             # je verifie que les coordonée soit libre et si c'est ko je recommence jusqu'a ce que soit ok
             check = FMap.checkDeplacement(
-                y, x, "deplacement", variableMap.mapBinInATab)
-            while check == "ko" or variableMap.mapInATab[y][x] != " ":
+                y, x, "deplacement", variableMap.mapInATab)
+            # while check == "ko" or variableMap.mapInATab[y][x] != " ":
+            while variableMap.mapInATab[y][x] != " ":
                 y = random.randint(3, 22)
                 x = random.randint(9, 88)
                 check = FMap.checkDeplacement(
-                    y, x, "deplacement", variableMap.mapBinInATab)
+                    y, x, "deplacement", variableMap.mapInATab)
             # si c'est bon j'ajoute X et Y dans le tablea de l'objet
             index.append(x)
             index.append(y)

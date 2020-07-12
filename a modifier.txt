@@ -1,9 +1,9 @@
-L15 - L16 FunctionAboutBag
-Rendre sa generique
 
 L96 FunctionAboutBag
 Verifier que le max des stats ne change pas
 
-Mini Jeux, Verifier qu'on a la place de prendre les clef
+Faire la sauvegarde et le menu au debut du jeu
 
-Map Virer la map binaire
+Faire un load pour les variable map et game
+
+Faire le backdoc
