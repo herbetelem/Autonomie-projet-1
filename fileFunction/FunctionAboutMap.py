@@ -81,10 +81,9 @@ def addItemPointOnMap(map1, items):
     for index in items:
         positionItemsIndex = 2
         while positionItemsIndex < (len(index) - 2):
-            # if index[positionItemsIndex + 1] > 0 and index[positionItemsIndex] > 0:
+            index[positionItemsIndex] = int(index[positionItemsIndex])
+            index[positionItemsIndex+1] = int(index[positionItemsIndex+1])
             map1[index[positionItemsIndex + 1]][index[positionItemsIndex]] = "."
-            # else:
-            #     map1[index[abs(positionItemsIndex) + 1]][index[abs(positionItemsIndex)]] = " "
             positionItemsIndex += 2
     return map1
 

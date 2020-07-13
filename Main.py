@@ -14,22 +14,8 @@ clear = lambda: os.system('cls')
 
 
 def Main():
+    # J'affiche le menu qui gere new parti
     FMain.menu()
-    # Call all the function
-    # appelle de la fonction pour demander le nom du joueur et print les regles
-    VarC.nomJoueur = FPrint.debutDuJeux()
-    # je m'assure que le joueur ai lu les regle
-    question = str(input("Est ce que vous êtes pret ? "))
-    while question not in VarC.reponseDebut:
-        question = str(input("Prenez votre temps et dite moi quand vous serez prêt ! "))
-
-    print()
-
-    # je cree de maniere aleatoire les diferent point de spawn des items
-    VarC.itemSlot = FBag.createItemSlot(VarC.itemSlot)
-    clear()
-    # j'ajoute les items sur la map
-    VarM.mapInATab = FMap.addItemPointOnMap(VarM.mapInATab, VarC.itemSlot)
     # j'affiche la carte
     FMap.printMap(VarC.positionJoueurY, VarC.positionJoueurX, VarM.mapInATab)
 

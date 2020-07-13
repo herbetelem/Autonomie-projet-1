@@ -91,12 +91,34 @@ def menu():
         # je recupere les variable dans mon fichier txt
         Fsave.loadVarClassic()
         Fsave.loadVarMap()
+        VarC.nomJoueur = FPrint.debutDuJeux()
+        # je m'assure que le joueur ai lu les regle
+        question = str(input("Est ce que vous êtes pret ? "))
+        while question not in VarC.reponseDebut:
+            question = str(input("Prenez votre temps et dite moi quand vous serez prêt ! "))
+
+        print()
+
+        # je cree de maniere aleatoire les diferent point de spawn des items
+        VarC.itemSlot = FBag.createItemSlot(VarC.itemSlot)
+        clear()
+        # j'ajoute les items sur la map
+        VarM.mapInATab = FMap.addItemPointOnMap(VarM.mapInATab, VarC.itemSlot)
     elif menuChoix == 2:
-        pass
+        # je verifie qu'il existe une sauvegarde valable
+        if Fsave.checkIsSaved():
+            Fsave.loadVarSaved()
+            Fsave.loadVarMap()
+            VarM.mapInATab = FMap.addItemPointOnMap(VarM.mapInATab, VarC.itemSlot)
+        else:
+            clear()
+            print("Vous n'avez pas de sauvegarde valide a charger")
+            input("Appuyer sur Entrer pour continuer")
+            menu()
     elif menuChoix == 3:
         clear()
         Fsave.loadScore()
-        input("Appuyer sur Enter pour continuer")
+        input("Appuyer sur Entrer pour continuer")
         menu()
 
 # fonction pour la commande bouger
