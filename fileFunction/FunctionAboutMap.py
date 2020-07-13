@@ -70,7 +70,8 @@ def printMap (y, x, map1):
 # fonction qui permet de dormir
 def sleepHour(nbHeure, statSommeil, statSoif, statFaim):
     statSommeil = statSommeil + nbHeure * 6
-    if statSommeil > VarC.maxSommeil:
+
+    if statSommeil > int(VarC.maxSommeil):
         statSommeil = VarC.maxSommeil
     statFaim = statFaim - nbHeure * 1
     statSoif = statSoif - nbHeure * 2

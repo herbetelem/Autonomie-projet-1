@@ -100,14 +100,14 @@ def useAnItem(item, soif, faim, sommeil):
         if item == "bouteille d'eau":
             phrase = "Vous videz votre bouteille d'eau"
             soif = soif + 50
-            if soif > VarC.maxSoif:
+            if soif > int(VarC.maxSoif):
                 soif = VarC.maxSoif
             return itemDelete, phrase, sommeil, soif, faim
 
         if item == "ananas":
             phrase = "Vous manger votre ananas"
             faim = faim + 50
-            if faim > VarC.maxFaim:
+            if faim > int(VarC.maxFaim):
                 faim = VarC.maxFaim
             return itemDelete, phrase, sommeil, soif, faim
 
@@ -119,9 +119,9 @@ def useAnItem(item, soif, faim, sommeil):
             phrase = "Vous manger la chair de la noix et buvez son jus"
             soif = soif + 25
             if soif > VarC.maxSoif:
-                soif = VarC.maxSoif
+                soif = int(VarC.maxSoif)
             faim = faim + 25
-            if faim > VarC.maxFaim:
+            if faim > int(VarC.maxFaim):
                 faim = VarC.maxFaim
             return itemDelete, phrase, sommeil, soif, faim
     return
