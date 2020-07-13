@@ -46,6 +46,11 @@ def loadVarClassic():
     VarC.directionPossible = varLoad[13]
     VarC.itemActionPossible = varLoad[14]
     VarC.reponseDebut = varLoad[15]
+    VarC.maxSoif = varLoad[16]
+    VarC.maxFaim = varLoad[17]
+    VarC.maxSommeil = varLoad[18]
+    VarC.actionJoueur = int(varLoad[19])
+    VarC.tourJoueur = int(varLoad[20])
 
 
 def loadVarMap():
@@ -65,3 +70,41 @@ def loadScore():
             lineX = lineX.replace("\n", "")
             lineX = lineX.split(" | ")
             print(f"{lineX[0]} à terminé le jeu en {lineX[1]} déplacements et {lineX[2]} actions")
+
+def saveData():
+    with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/save/save.txt", "w", encoding = "utf-8") as file : 
+        sacJoin = " | ".join(VarC.sac)
+        actionPossibleJoin = " | ".join(VarC.actionPossible)
+        itemActionPossibleJoin = " | ".join(VarC.itemActionPossible)
+        directionPossibleJoin = " | ".join(VarC.directionPossible)
+        reponseDebutJoin = " | ".join(VarC.reponseDebut)
+        itemSlotJoin = []
+        for i in range(0, (len(VarC.itemSlot) - 1)):
+            lineX = []
+            for o in VarC.itemSlot[i]:
+                lineX.append(str(o))
+            lineXJoin = " ! ".join(lineX)
+            itemSlotJoin.append(lineXJoin)
+        itemSlotJoin = " | ".join(itemSlotJoin)
+        file.write(f"{VarC.nomJoueur}\n")
+        file.write(f"{VarC.avatar}\n")
+        file.write(f"{VarC.statSoif}\n")
+        file.write(f"{VarC.statFaim}\n")
+        file.write(f"{VarC.statSommeil}\n")
+        file.write(f"{VarC.positionJoueurY}\n")
+        file.write(f"{VarC.positionJoueurX}\n")
+        file.write(f"{sacJoin}\n")
+        file.write(f"{VarC.limitSac}\n")
+        file.write(f"{itemSlotJoin}\n")
+        file.write(f"{VarC.prevMoove}\n")
+        file.write(f"{VarC.statutParti}\n")
+        file.write(f"{actionPossibleJoin}\n")
+        file.write(f"{directionPossibleJoin}\n")
+        file.write(f"{itemActionPossibleJoin}\n")
+        file.write(f"{reponseDebutJoin}\n")
+        file.write(f"{VarC.maxSoif}\n")
+        file.write(f"{VarC.maxFaim}\n")
+        file.write(f"{VarC.maxSommeil}\n")
+        file.write(f"{VarC.actionJoueur}\n")
+        file.write(f"{VarC.tourJoueur}\n")
+        

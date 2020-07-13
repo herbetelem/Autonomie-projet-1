@@ -1,5 +1,5 @@
 # import des fichiers
-import fileFunction.variableMap as variableMap
+import fileFunction.variableMap as VarM
 import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
 import fileFunction.FunctionPrint as FPrint
@@ -23,7 +23,7 @@ def checkDeplacement(y, x, deplacement, mapBinaire):
     var = mapBinaire[y][x]
 
     # if mapBinaire[y][x] == " " or mapBinaire[y][x] == "." :
-    if mapBinaire[y][x] in variableMap.slotMoove:
+    if mapBinaire[y][x] in VarM.slotMoove:
         return "ok"
     else:
         return "ko"
@@ -55,8 +55,8 @@ def printMap (y, x, map1):
             if compteur1 == y and compteur2 == x:
                 ligne = str(ligne) + VarC.avatar
             else:
-                if str(map1[compteur1][compteur2]) in variableMap.ItemCouleur:
-                    color = variableMap.couleurItem[str(map1[compteur1][compteur2])]
+                if str(map1[compteur1][compteur2]) in VarM.ItemCouleur:
+                    color = VarM.couleurItem[str(map1[compteur1][compteur2])]
                     ligne = f"{ligne}{color}"
                 else:
                     ligne = f"{ligne}{map1[compteur1][compteur2]}"
@@ -70,8 +70,8 @@ def printMap (y, x, map1):
 # fonction qui permet de dormir
 def sleepHour(nbHeure, statSommeil, statSoif, statFaim):
     statSommeil = statSommeil + nbHeure * 6
-    if statSommeil > 100:
-        statSommeil = 100
+    if statSommeil > VarC.maxSommeil:
+        statSommeil = VarC.maxSommeil
     statFaim = statFaim - nbHeure * 1
     statSoif = statSoif - nbHeure * 2
     return statSommeil, statFaim, statSoif
@@ -91,7 +91,7 @@ def addItemPointOnMap(map1, items):
 # fonction fin de tour qui imprime la carte et les stats
 def endTurn():
     clear()
-    FMap.printMap(VarC.positionJoueurY, VarC.positionJoueurX, variableMap.mapInATab)
+    FMap.printMap(VarC.positionJoueurY, VarC.positionJoueurX, VarM.mapInATab)
     print(f"Votre action précedentes était de : {VarC.prevMoove}")
     FBag.intoMyBag(VarC.sac, VarC.limitSac)
     print(f"{VarC.nomJoueur} voici vos stat, faim = {VarC.statFaim}, soif = {VarC.statSoif}, sommeil = {VarC.statSommeil}")

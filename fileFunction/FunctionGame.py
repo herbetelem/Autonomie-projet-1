@@ -1,5 +1,5 @@
 # librairie
-import fileFunction.variableMap as variableMap
+import fileFunction.variableMap as VarM
 import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
 import fileFunction.FunctionMain as FMain
@@ -96,7 +96,7 @@ def jeuxNombreMystere():
     if nombreTrouve == 3:
         print("Félicitation, vous avez gagner. Vous mettez votre clef de bronze dans votre sac")
         VarC.sac.append("clef de bronze")
-        variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+        VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
         input("Si vous êtes prets a continuer apuyer sur entrer")
     # sinon je le fait changer de position pour ne pas lancer le jeu a la chaine
     elif tour == 20:
@@ -163,7 +163,7 @@ def jeuxCodeCesar():
                 # je met la clef dans le sac (j'ai verifier avant si il avait de la place)
                 VarC.sac.append("clef d'argent")
                 # je suprime le portail qui amenait au mini jeu
-                variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+                VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
                 # je met le tour a 6 pour sortir de la boucle du jeu
                 tour = 6
                 input("entrer pour continuer")
@@ -218,6 +218,7 @@ def jeuxFizzBuzz():
     listeJoueur = list(VarG.listeSinge)
     # je met le nom du joueur dans la liste
     listeJoueur[10][0] = VarC.nomJoueur
+    random.shuffle(listeJoueur)
     # cette variable est ok tant que le joueur est encore dans la partie
     joueurStatut = "ok"
     input("Taper entrer pour continuer")
@@ -275,7 +276,7 @@ def jeuxFizzBuzz():
     if joueurStatut == "ok":
         print(f"{listeJoueur[0][0]} a gagné la parti, vous prenez la clef d'or et partez")
         VarC.sac.append("clef d'or")
-        variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+        VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
         input("Taper entrer pour continuer")
     
     # sinon il perd et bah c'est balo
@@ -284,4 +285,3 @@ def jeuxFizzBuzz():
         VarC.positionJoueurX = VarC.positionJoueurX - 1
         print("vous avez perdu")
         input("Taper entrer pour continuer")
-    

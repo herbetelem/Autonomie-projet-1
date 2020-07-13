@@ -7,10 +7,15 @@
 20
 PC portable | chargeur solaire | couteau suisse | carte | bouteille d'eau
 12
-bouteille d'eau ! 15 | poireau ! 15 | noix de coco ! 15 | kit de cookie ! 10
+bouteille d'eau ! 15 | ananas ! 25 | noix de coco ! 15 | kit de cookie ! 10
 commencer
 ok
-bouger | dormir | regle | touche | inventaire | sauvegarder
+bouger | dormir | regle | touche | inventaire | sauvegarder | quitter
 s | z | q | d
 ramasser | rien
 oui | yes | si
+100
+100
+100
+0
+0

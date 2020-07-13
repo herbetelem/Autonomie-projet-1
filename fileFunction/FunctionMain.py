@@ -1,5 +1,5 @@
 # add all libs
-import fileFunction.variableMap as variableMap
+import fileFunction.variableMap as VarM
 import fileFunction.FunctionAboutBag as FBag
 import fileFunction.FunctionAboutMap as FMap
 import fileFunction.FunctionMain as FMain
@@ -52,7 +52,7 @@ def inventaire():
     # si le choix du joueur est de deposer un objet
     else:
         # je verifie que je peux deposer a la lplace ouce situe le joueur
-        testMap = variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX]
+        testMap = VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX]
         if testMap == ".":
             VarC.prevMoove = "Vous avez tenter de deposer un objet mais la place était deja prise"
         else:
@@ -68,7 +68,7 @@ def inventaire():
                     listToItem = [VarC.sac[choixAction], 0, VarC.positionJoueurX, VarC.positionJoueurY]
                     VarC.itemSlot.append(listToItem)
                     del VarC.sac[int(choixAction)]
-                    variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = "."
+                    VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = "."
                     print("Vous avez bien deposer votre objet")
                     VarC.prevMoove = "Depot d'un objet"
 
@@ -108,11 +108,11 @@ def bouger():
         direction = input("Choisissez parmis z, s, q, d, regle ou touche ! ")
 
     # je verifie que le joueur peux s'y deplacer
-    check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, variableMap.mapInATab)
+    check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, VarM.mapInATab)
     
     while check == "ko":
         direction = input("Vous ne pouvez pas vous deplacer par la, choisissez une autre destination ! ")
-        check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, variableMap.mapInATab)
+        check = FMap.checkDeplacement(VarC.positionJoueurY, VarC.positionJoueurX, direction, VarM.mapInATab)
     # si le joueur gagne
     if check == "win":
         FPrint.gameWin(nomJoueur)
@@ -147,6 +147,6 @@ def bouger():
         if itemAction == "ramasser":
             if len(VarC.sac) < 10:
                 VarC.sac.append(itemPlaceCheck)
-                variableMap.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+                VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
             else:
                 print("votre sac est plein, vous ne pouvez pas rammasser un autre objet")

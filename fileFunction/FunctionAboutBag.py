@@ -1,7 +1,8 @@
 # Import des librairie
 import random
 import fileFunction.FunctionAboutMap as FMap
-import fileFunction.variableMap as variableMap
+import fileFunction.variableMap as VarM
+import fileFunction.variableClassic as VarC
 
 # [["item", nombre d'item, x1, y1, x2, y2, etc], etc ...]
 
@@ -12,18 +13,18 @@ def createItemSlot(items):
         # tant que mon compteur est inferieur au nombre d'item a creer
         while compteur < index[1]:
             # je genere random une position x et y
-            y = random.randint(0, (len(variableMap.mapInATab)  - 1))
-            x = random.randint(0, (len(variableMap.mapInATab[0]) - 1))
+            y = random.randint(0, (len(VarM.mapInATab)  - 1))
+            x = random.randint(0, (len(VarM.mapInATab[0]) - 1))
             # je verifie que les coordonée soit libre et si c'est ko je recommence jusqu'a ce que soit ok
             check = FMap.checkDeplacement(
-                y, x, "deplacement", variableMap.mapInATab)
-            # while check == "ko" or variableMap.mapInATab[y][x] != " ":
-            # while variableMap.mapInATab[y][x] != " ":
-            while variableMap.mapInATab[y][x] not in variableMap.slotMoove:
-                y = random.randint(0, (len(variableMap.mapInATab)  - 1))
-                x = random.randint(0, (len(variableMap.mapInATab[0])  - 1))
+                y, x, "deplacement", VarM.mapInATab)
+            # while check == "ko" or VarM.mapInATab[y][x] != " ":
+            # while VarM.mapInATab[y][x] != " ":
+            while VarM.mapInATab[y][x] not in VarM.slotMoove:
+                y = random.randint(0, (len(VarM.mapInATab)  - 1))
+                x = random.randint(0, (len(VarM.mapInATab[0])  - 1))
                 check = FMap.checkDeplacement(
-                    y, x, "deplacement", variableMap.mapInATab)
+                    y, x, "deplacement", VarM.mapInATab)
             # si c'est bon j'ajoute X et Y dans le tablea de l'objet
             index.append(x)
             index.append(y)
@@ -99,15 +100,15 @@ def useAnItem(item, soif, faim, sommeil):
         if item == "bouteille d'eau":
             phrase = "Vous videz votre bouteille d'eau"
             soif = soif + 50
-            if soif > 100:
-                soif = 100
+            if soif > VarC.maxSoif:
+                soif = VarC.maxSoif
             return itemDelete, phrase, sommeil, soif, faim
 
-        if item == "poireau":
-            phrase = "Vous manger votre poireau"
+        if item == "ananas":
+            phrase = "Vous manger votre ananas"
             faim = faim + 50
-            if faim > 100:
-                faim = 100
+            if faim > VarC.maxFaim:
+                faim = VarC.maxFaim
             return itemDelete, phrase, sommeil, soif, faim
 
         if item == "kit de cookie":
@@ -117,11 +118,11 @@ def useAnItem(item, soif, faim, sommeil):
         if item == "noix de coco":
             phrase = "Vous manger la chair de la noix et buvez son jus"
             soif = soif + 25
-            if soif > 100:
-                soif = 100
+            if soif > VarC.maxSoif:
+                soif = VarC.maxSoif
             faim = faim + 25
-            if faim > 100:
-                faim = 100
+            if faim > VarC.maxFaim:
+                faim = VarC.maxFaim
             return itemDelete, phrase, sommeil, soif, faim
     return
 

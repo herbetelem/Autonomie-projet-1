@@ -1,6 +1,5 @@
 # Les Variable global
 
-
 nomJoueur = 0
 avatar = 0
 statSoif = 0
@@ -19,3 +18,6 @@ itemActionPossible = 0
 reponseDebut = 0
 tourJoueur = 0
 actionJoueur = 0
+maxSoif = 0
+maxSommeil = 0
+maxFaim = 0

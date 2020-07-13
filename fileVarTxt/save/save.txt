@@ -1,0 +1,21 @@
+Tom
+∇
+100
+100
+100
+4
+20
+PC portable | chargeur solaire | couteau suisse | carte | bouteille d'eau
+12
+bouteille d'eau ! 15 ! 47 ! 15 ! 48 ! 8 ! 5 ! 24 ! 17 ! 9 ! 9 ! 22 ! 69 ! 22 ! 82 ! 18 ! 41 ! 12 ! 79 ! 23 ! 55 ! 12 ! 47 ! 14 ! 50 ! 5 ! 51 ! 8 ! 60 ! 13 ! 86 ! 13 | ananas ! 25 ! 87 ! 6 ! 79 ! 24 ! 28 ! 10 ! 21 ! 19 ! 66 ! 8 ! 49 ! 20 ! 79 ! 4 ! 16 ! 18 ! 19 ! 21 ! 10 ! 19 ! 51 ! 21 ! 55 ! 13 ! 11 ! 2 ! 59 ! 19 ! 27 ! 19 ! 16 ! 9 ! 57 ! 18 ! 12 ! 17 ! 29 ! 12 ! 18 ! 12 ! 23 ! 8 ! 65 ! 24 ! 27 ! 20 ! 18 ! 12 ! 60 ! 11 | noix de coco ! 15 ! 57 ! 17 ! 25 ! 6 ! 48 ! 14 ! 35 ! 12 ! 71 ! 12 ! 73 ! 9 ! 52 ! 13 ! 85 ! 12 ! 52 ! 12 ! 84 ! 22 ! 30 ! 21 ! 37 ! 5 ! 83 ! 7 ! 10 ! 6 ! 31 ! 3
+commencer
+ok
+bouger | dormir | regle | touche | inventaire | sauvegarder | quitter
+s | z | q | d
+ramasser | rien
+oui | yes | si
+100
+100
+100
+0
+0

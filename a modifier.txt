@@ -1,10 +1,13 @@
-
-L96 FunctionAboutBag
-Verifier que le max des stats ne change pas
-
 Faire la sauvegarde
+
 
 Faire une fonction Try catch generique pour verifier tout les input
 
 
 Faire le backdoc
+
+rajouter un quitter le jeu
+
+randomiser la liste du fizzbuzz
+
+verifier les ananas
