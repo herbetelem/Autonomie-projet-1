@@ -21,6 +21,7 @@ def Main():
 
     print()
     while VarC.statutParti == "ok":
+        FMain.formatVar()
         # je verifie si le joueur est au point de victoire avec les 3 clef
         if VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "@":
             if "clef d'or" in VarC.sac and "clef d'argent" in VarC.sac and "clef de bronze" in VarC.sac:

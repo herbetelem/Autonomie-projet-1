@@ -163,6 +163,14 @@ def bouger():
     # je check si le joueur a almrcher sur un objet
     itemPlaceCheck = FMap.checkItemPosition(VarC.positionJoueurX, VarC.positionJoueurY, VarC.itemSlot)
     if itemPlaceCheck != None:
+        if itemPlaceCheck == "bouteille d'eau":
+            FPrint.printBouteille()
+        elif itemPlaceCheck == "ananas":
+            FPrint.printAnanas()
+        elif itemPlaceCheck == "kit de cookie":
+            FPrint.printCookie()
+        elif itemPlaceCheck == "noix de coco":
+            FPrint.printCoconut()
         itemAction = input(f"en marchant vous tombé sur un {itemPlaceCheck} que veux tu en faire, (ramasser, ou rien) ? ")
         while itemAction not in VarC.itemActionPossible:
             itemAction = input(f"ramasser ou rien ")
@@ -172,3 +180,17 @@ def bouger():
                 VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
             else:
                 print("votre sac est plein, vous ne pouvez pas rammasser un autre objet")
+
+# je m'assure que mes vars Int en soit bien
+def formatVar():
+    VarC.statFaim = int(VarC.statFaim)
+    VarC.statSoif = int(VarC.statSoif)
+    VarC.statSommeil = int(VarC.statSommeil)
+    VarC.positionJoueurX = int(VarC.positionJoueurX)
+    VarC.positionJoueurY = int(VarC.positionJoueurY)
+    VarC.limitSac = int(VarC.limitSac)
+    VarC.tourJoueur = int(VarC.tourJoueur)
+    VarC.actionJoueur = int(VarC.actionJoueur)
+    VarC.maxSoif = int(VarC.maxSoif)
+    VarC.maxFaim = int(VarC.maxFaim)
+    VarC.maxSommeil = int(VarC.maxSommeil)
