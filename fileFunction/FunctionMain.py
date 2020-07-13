@@ -6,6 +6,7 @@ import fileFunction.FunctionMain as FMain
 import fileFunction.FunctionPrint as FPrint
 import fileFunction.FunctionGame as FGame
 import fileFunction.variableClassic as VarC
+import fileFunction.FunctionSave as Fsave
 import os
 clear = lambda: os.system('cls')
 
@@ -80,6 +81,23 @@ def dormir():
     VarC.statFaim = goSleep[1]
     VarC.statSoif = goSleep[2]
     VarC.prevMoove = "dormir"
+
+# fonction qui gere le menu
+def menu():
+    clear()
+    FPrint.menuTitle()
+    menuChoix = int(input("Choisissez votre option ici : "))
+    if menuChoix == 1:
+        # je recupere les variable dans mon fichier txt
+        Fsave.loadVarClassic()
+        Fsave.loadVarMap()
+    elif menuChoix == 2:
+        pass
+    elif menuChoix == 3:
+        clear()
+        Fsave.loadScore()
+        input("Appuyer sur Enter pour continuer")
+        menu()
 
 # fonction pour la commande bouger
 def bouger():

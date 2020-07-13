@@ -2,6 +2,21 @@ import sys
 
 # rien a expliquer ici ce n'est que des print
 
+def menuTitle():
+    print("\033[32m.d88888b                             oo                               dP          dP                         dP ")
+    print("88.    \"'                                                             88          88                         88 ")
+    print("`Y88888b. dP    dP 88d888b. dP   .dP dP dP   .dP .d8888b. 88d888b.    88 .d8888b. 88 .d8888b. 88d888b. .d888b88 ")
+    print("      `8b 88    88 88'  `88 88   d8' 88 88   d8' 88'  `88 88'  `88    88 Y8ooooo. 88 88'  `88 88'  `88 88'  `88 ")
+    print("d8'   .8P 88.  .88 88       88 .88'  88 88 .88'  88.  .88 88          88       88 88 88.  .88 88    88 88.  .88 ")
+    print(" Y88888P  `88888P' dP       8888P'   dP 8888P'   `88888P' dP          dP `88888P' dP `88888P8 dP    dP `88888P8 \033[0m")
+    print()
+    print()
+    print("                                                      \033[31mMENU")
+    print("                                           Veuillez choisir une option")
+    print("                                                  1 : New Game")
+    print("                                                  2 : Load Game")
+    print("                                                  3 : Score\033[0m")
+
 def gameWin(nomJouteur, tourJoueur, actionJoueur):
     print()
     print("-----------------VOUS AVEZ GAGNER------------------")

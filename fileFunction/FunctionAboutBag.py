@@ -18,9 +18,10 @@ def createItemSlot(items):
             check = FMap.checkDeplacement(
                 y, x, "deplacement", variableMap.mapInATab)
             # while check == "ko" or variableMap.mapInATab[y][x] != " ":
-            while variableMap.mapInATab[y][x] != " ":
-                y = random.randint(3, 22)
-                x = random.randint(9, 88)
+            # while variableMap.mapInATab[y][x] != " ":
+            while variableMap.mapInATab[y][x] not in variableMap.slotMoove:
+                y = random.randint(0, (len(variableMap.mapInATab)  - 1))
+                x = random.randint(0, (len(variableMap.mapInATab[0])  - 1))
                 check = FMap.checkDeplacement(
                     y, x, "deplacement", variableMap.mapInATab)
             # si c'est bon j'ajoute X et Y dans le tablea de l'objet

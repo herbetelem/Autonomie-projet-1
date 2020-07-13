@@ -55,19 +55,11 @@ def printMap (y, x, map1):
             if compteur1 == y and compteur2 == x:
                 ligne = str(ligne) + VarC.avatar
             else:
-                # je verifie et si oui j'ajoute la couleur
-                if str(map1[compteur1][compteur2]) == "*":
-                    ligne = f"{ligne}\033[33m{map1[compteur1][compteur2]}\033[0m"
-                elif str(map1[compteur1][compteur2]) == "~":
-                    ligne = f"{ligne}\033[36m{map1[compteur1][compteur2]}\033[0m"
-                elif str(map1[compteur1][compteur2]) == "█":
-                    ligne = f"{ligne}\033[31m{map1[compteur1][compteur2]}\033[0m"
-                elif str(map1[compteur1][compteur2]) == "M":
-                    ligne = f"{ligne}\033[35m{map1[compteur1][compteur2]}\033[0m"
-                elif str(map1[compteur1][compteur2]) == "♣":
-                    ligne = f"{ligne}\033[32m{map1[compteur1][compteur2]}\033[0m"
+                if str(map1[compteur1][compteur2]) in variableMap.ItemCouleur:
+                    color = variableMap.couleurItem[str(map1[compteur1][compteur2])]
+                    ligne = f"{ligne}{color}"
                 else:
-                    ligne = str(ligne) + str(map1[compteur1][compteur2])
+                    ligne = f"{ligne}{map1[compteur1][compteur2]}"
             compteur2 = compteur2 + 1
         compteur1 = compteur1 + 1
         # j'imprime les lignes une a une
@@ -75,7 +67,7 @@ def printMap (y, x, map1):
     print()
     print()
 
-# fonction qui permet de dormier
+# fonction qui permet de dormir
 def sleepHour(nbHeure, statSommeil, statSoif, statFaim):
     statSommeil = statSommeil + nbHeure * 6
     if statSommeil > 100:

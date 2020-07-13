@@ -1,6 +1,7 @@
 # coding: utf-8
 import json
 import fileFunction.variableClassic as VarC
+import fileFunction.variableMap as VarM
 
 
 def loadVarClassic():
@@ -48,3 +49,19 @@ def loadVarClassic():
 
 
 def loadVarMap():
+    mapLoad = []
+    with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/variableMap.txt", "r", encoding = "utf-8") as file : 
+        fileLoaded = [line for line in file]
+        for lineX in fileLoaded:
+            lineX = lineX.replace("\n", "")
+            mapLoad.append(list(lineX))
+    VarM.mapInATab = mapLoad
+
+
+def loadScore():
+    with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/score/score.txt", "r", encoding = "utf-8") as file : 
+        fileLoaded = [line for line in file]
+        for lineX in fileLoaded:
+            lineX = lineX.replace("\n", "")
+            lineX = lineX.split(" | ")
+            print(f"{lineX[0]} à terminé le jeu en {lineX[1]} déplacements et {lineX[2]} actions")

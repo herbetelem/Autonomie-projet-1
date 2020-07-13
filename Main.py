@@ -13,8 +13,7 @@ clear = lambda: os.system('cls')
 
 
 def Main():
-    # je recupere les variable dans mon fichier txt
-    FSave.loadVarClassic()
+    FMain.menu()
     # Call all the function
     # appelle de la fonction pour demander le nom du joueur et print les regles
     VarC.nomJoueur = FPrint.debutDuJeux()
@@ -100,6 +99,9 @@ def Main():
             elif action == "inventaire":
                 FMain.inventaire()
                 VarC.actionJoueur += 1
+            
+            elif action == "sauvegarder":
+                pass
 
             # je verifie que le joueur ai encore des stats pour continuer
             if VarC.statFaim <= 0 or VarC.statSoif <= 0 or VarC.statSommeil <= 0:

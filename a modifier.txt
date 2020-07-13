@@ -2,8 +2,9 @@
 L96 FunctionAboutBag
 Verifier que le max des stats ne change pas
 
-Faire la sauvegarde et le menu au debut du jeu
+Faire la sauvegarde
 
-Faire un load pour les variable map et game
+Faire une fonction Try catch generique pour verifier tout les input
+
 
 Faire le backdoc
