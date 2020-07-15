@@ -3,7 +3,7 @@ import json
 import fileFunction.variableClassic as VarC
 import fileFunction.variableMap as VarM
 
-
+# sa fonction mais j'ai rien compris donc j'ai rien a expluquer
 def loadVarClassic():
     varLoad = []
     with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/variableClassic.txt", "r", encoding = "utf-8") as file : 

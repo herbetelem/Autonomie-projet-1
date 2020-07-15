@@ -17,7 +17,7 @@ def menuTitle():
     print("                                                  2 : Load Game")
     print("                                                  3 : Score\033[0m")
 
-def gameWin(nomJouteur, tourJoueur, actionJoueur):
+def gameWin(nomJoueur, tourJoueur, actionJoueur):
     print()
     print("-----------------VOUS AVEZ GAGNER------------------")
     print()	
@@ -50,7 +50,7 @@ def gameWin(nomJouteur, tourJoueur, actionJoueur):
     print("                        / / \;=;\ ")
     print()
     print()
-    print(f"Félicitation {nomJouteur}, vous avez gagner cette partie !")
+    print(f"Félicitation {nomJoueur}, vous avez gagner cette partie !")
     print(f"Vous avez gagné en fesant {VarC.tourJoueur} deplacements et {VarC.actionJoueur} actions")
     sys.exit()
 
