@@ -8,6 +8,7 @@ import fileFunction.variableClassic as VarC
 
 # fonction pour creer les slot pour chaque item
 def createItemSlot(items):
+    porte = ["£", "$", "€", "@"]
     for index in items:
         compteur = 0
         # tant que mon compteur est inferieur au nombre d'item a creer
@@ -20,7 +21,7 @@ def createItemSlot(items):
                 y, x, "deplacement", VarM.mapInATab)
             # while check == "ko" or VarM.mapInATab[y][x] != " ":
             # while VarM.mapInATab[y][x] != " ":
-            while VarM.mapInATab[y][x] not in VarM.slotMoove:
+            while VarM.mapInATab[y][x] not in VarM.slotMoove or VarM.mapInATab[y][x] in porte:
                 y = random.randint(0, (len(VarM.mapInATab)  - 1))
                 x = random.randint(0, (len(VarM.mapInATab[0])  - 1))
                 check = FMap.checkDeplacement(

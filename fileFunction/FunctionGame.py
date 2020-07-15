@@ -117,12 +117,15 @@ def jeuxCodeCesar():
     input("Appuyer sur Entrer pour continuer")
     clear()
     # je demande quel code le jeux vas utiliser ou je le genere de maniere aléatoire
+    # Mode FLEMME
     code = input("Choisissez la lettre code : ")
+    # Mode NORMAL
     # code = VarG.listeAlphabet[random.randint(1, 26)]
     # Si le code est choisi par le joueur, je m'assure qu'il respecte ce que je veux
     while len(code) > 1:
         code = input("une seul lettre")
     code = code.lower()
+    credoCode = codeCesar(code, VarG.credo)
     # et enfin je print le credo crypter avec le code
     print("Voici le credo avec le code")
     print(codeCesar(code, VarG.credo))
@@ -146,7 +149,7 @@ def jeuxCodeCesar():
         # Si le joueur n'a rentrer qu'une seule lettre, je sort le credo crypter avec cette lettre
         elif len(actionJoueur) == 1:
             print(f"Le credo avec le code {actionJoueur}")
-            print(codeCesar(actionJoueur, VarG.credo))
+            print(decryptCodeCesar(actionJoueur, credoCode))
         # Si le joueur a rentrer plus d'une lettre, je decrypte sa saisi avec le code du debut
         elif len(actionJoueur) > 1:
             # le fait de rentrer plusieur lettre est la seul action qui consome un tour

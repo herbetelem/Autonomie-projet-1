@@ -72,6 +72,31 @@ def Main():
             # j'apelle la fonction qui correspond a l'action du joueur
             if action == "regle":
                 FPrint.printRegle()
+
+            elif action == "42":
+                mdp = str(input("donne moi pi avec 20 chiffre derriere : "))
+                if mdp == "flemme":
+                    destination = str(input("Vers ou voulez vous aller ? (sphinx, cesar, singe, porte) : "))
+                    if destination == "sphinx":
+                        VarC.prevMoove = "Comme vous êtes un tricheur vous aller direct voir le sphinx"
+                        VarC.positionJoueurY = 24
+                        VarC.positionJoueurX = 3
+                    elif destination == "cesar":
+                        VarC.prevMoove = "Comme vous êtes un tricheur vous aller direct voir cesar"
+                        VarC.positionJoueurY = 24
+                        VarC.positionJoueurX = 92
+                    elif destination == "singe":
+                        VarC.prevMoove = "Comme vous êtes un tricheur vous aller direct voir les singes"
+                        VarC.positionJoueurY = 3
+                        VarC.positionJoueurX = 84
+                    elif destination == "porte":
+                        VarC.prevMoove = "Comme vous êtes un tricheur vous aller direct voir la porte"
+                        VarC.positionJoueurY = 3
+                        VarC.positionJoueurX = 44
+                    else:
+                        input("tricher c'est bien, regarder les options c'est mieux")
+                else:
+                    print("Raté")
             
             elif action == "touche":
                 FPrint.printTouche()

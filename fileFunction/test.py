@@ -1,8 +1,5 @@
 def checkInput(value, require):
-  if type(value) is require:
-    print("ok")
-  else:
-    print("ko")
+  while type(value) is not require:
+    value = input(f"On vous a demander une {require}")
 
-
-checkInput("test", str)
+checkInput(5, str)

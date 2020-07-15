@@ -3,14 +3,14 @@
 100
 100
 100
-4
-20
+3
+8
 PC portable | chargeur solaire | couteau suisse | carte | bouteille d'eau
 12
 bouteille d'eau ! 15 | ananas ! 25 | noix de coco ! 15 | kit de cookie ! 10
 commencer
 ok
-bouger | dormir | regle | touche | inventaire | sauvegarder | quitter
+bouger | dormir | regle | touche | inventaire | sauvegarder | quitter | 42
 s | z | q | d
 ramasser | rien
 oui | yes | si

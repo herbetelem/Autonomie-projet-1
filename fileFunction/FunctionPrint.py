@@ -51,7 +51,7 @@ def gameWin(nomJoueur, tourJoueur, actionJoueur):
     print()
     print()
     print(f"Félicitation {nomJoueur}, vous avez gagner cette partie !")
-    print(f"Vous avez gagné en fesant {VarC.tourJoueur} deplacements et {VarC.actionJoueur} actions")
+    print(f"Vous avez gagné en fesant {tourJoueur} deplacements et {actionJoueur} actions")
     sys.exit()
 
 def gameOver():
