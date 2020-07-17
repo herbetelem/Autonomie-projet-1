@@ -1,3 +1,4 @@
+# coding: utf-8
 # librairie
 import fileFunction.variableMap as VarM
 import fileFunction.FunctionAboutBag as FBag
@@ -95,14 +96,14 @@ def jeuxNombreMystere():
     # Si le joueur a trouver les 3 chiffres, je lui donne la clef
     if nombreTrouve == 3:
         print("Félicitation, vous avez gagner. Vous mettez votre clef de bronze dans votre sac")
-        VarC.sac.append("clef de bronze")
-        VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+        VarC.bag.append("clef de bronze")
+        VarM.mapInATab[VarC.positionPlayerY][VarC.positionPlayerX] = " "
         input("Si vous êtes prets a continuer apuyer sur entrer")
     # sinon je le fait changer de position pour ne pas lancer le jeu a la chaine
     elif tour == 20:
         print("c'est dommage, vous avez mis trop de tour pour trouver la solution, reessayer plus tard")
         input("Si vous êtes prets a continuer apuyer sur entrer")
-        VarC.positionJoueurX = VarC.positionJoueurX + 1
+        VarC.positionPlayerX = VarC.positionPlayerX + 1
 #---------------------------------------------------------------------------------------------------------
 
 
@@ -159,14 +160,14 @@ def jeuxCodeCesar():
             print(tentative)
             input(f"Tentative {tour}/5 appuyer sur entrer pour essayer")
             # je check si le retour est egual au nom du joueur
-            if tentative == VarC.nomJoueur.lower():
+            if tentative == VarC.namePlayer.lower():
                 # si il gagne je lui donne la clef
                 print("bravo vous avez gagné la clef d'argent.")
                 print("Vous la ranger immédiatement dans votre sac.")
                 # je met la clef dans le sac (j'ai verifier avant si il avait de la place)
-                VarC.sac.append("clef d'argent")
+                VarC.bag.append("clef d'argent")
                 # je suprime le portail qui amenait au mini jeu
-                VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+                VarM.mapInATab[VarC.positionPlayerY][VarC.positionPlayerX] = " "
                 # je met le tour a 6 pour sortir de la boucle du jeu
                 tour = 6
                 input("entrer pour continuer")
@@ -177,7 +178,7 @@ def jeuxCodeCesar():
         # je met un message de loose dans la var qui donne les mooves
         VarC.prevMoove = "Malheureusment vous avez mis plus de 5 tentative a trouver votre nom, reessayer plus tard"
         # je decale le joueur de la position parce que sinon le joueur referait le jeux a l'infinie
-        VarC.positionJoueurX = VarC.positionJoueurX - 1
+        VarC.positionPlayerX = VarC.positionPlayerX - 1
 
 # fonction qui trouve le chiffre par rapport au lettre
 def letterToNb(letter):
@@ -220,7 +221,7 @@ def jeuxFizzBuzz():
     # je créer une liste de singe 
     listeJoueur = list(VarG.listeSinge)
     # je met le nom du joueur dans la liste
-    listeJoueur[10][0] = VarC.nomJoueur
+    listeJoueur[10][0] = VarC.namePlayer
     random.shuffle(listeJoueur)
     # cette variable est ok tant que le joueur est encore dans la partie
     joueurStatut = "ok"
@@ -270,7 +271,7 @@ def jeuxFizzBuzz():
                     else:
                         print(f"{joueur[0]} : {depart}")
                     if statutManche == "ko":
-                        if joueur[0] == VarC.nomJoueur:
+                        if joueur[0] == VarC.namePlayer:
                             joueurStatut = "ko"
                     depart += 1
                     # time.sleep permet d'avoir un peu de temp entre chaque tour
@@ -278,13 +279,13 @@ def jeuxFizzBuzz():
     # si le joueur est le dernier dans la parti il gagne
     if joueurStatut == "ok":
         print(f"{listeJoueur[0][0]} a gagné la parti, vous prenez la clef d'or et partez")
-        VarC.sac.append("clef d'or")
-        VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] = " "
+        VarC.bag.append("clef d'or")
+        VarM.mapInATab[VarC.positionPlayerY][VarC.positionPlayerX] = " "
         input("Taper entrer pour continuer")
     
     # sinon il perd et bah c'est balo
     else:
         VarC.prevMoove = "Malheureusment vous avez perdu au FizzBuzz, reessayer plus tard"
-        VarC.positionJoueurX = VarC.positionJoueurX - 1
+        VarC.positionPlayerX = VarC.positionPlayerX - 1
         print("vous avez perdu")
         input("Taper entrer pour continuer")

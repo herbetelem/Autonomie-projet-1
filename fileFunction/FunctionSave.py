@@ -33,27 +33,27 @@ def loadVarClassic():
             varLoad[9][compteur] = index.split(" ! ")
             varLoad[9][compteur][1] = int(varLoad[9][compteur][1])
             compteur += 1
-        VarC.nomJoueur = varLoad[0]
+        VarC.namePlayer = varLoad[0]
         VarC.avatar = varLoad[1]
-        VarC.statSoif = varLoad[2]
-        VarC.statFaim = varLoad[3]
-        VarC.statSommeil = varLoad[4]
-        VarC.positionJoueurY = varLoad[5]
-        VarC.positionJoueurX = varLoad[6]
-        VarC.sac = varLoad[7]
-        VarC.limitSac = varLoad[8]
+        VarC.thirst = varLoad[2]
+        VarC.hunger = varLoad[3]
+        VarC.sleep = varLoad[4]
+        VarC.positionPlayerY = varLoad[5]
+        VarC.positionPlayerX = varLoad[6]
+        VarC.bag = varLoad[7]
+        VarC.limitBag = varLoad[8]
         VarC.itemSlot = varLoad[9]
         VarC.prevMoove = varLoad[10]
-        VarC.statutParti = varLoad[11]
+        VarC.statutParty = varLoad[11]
         VarC.actionPossible = varLoad[12]
         VarC.directionPossible = varLoad[13]
         VarC.itemActionPossible = varLoad[14]
-        VarC.reponseDebut = varLoad[15]
-        VarC.maxSoif = varLoad[16]
-        VarC.maxFaim = varLoad[17]
-        VarC.maxSommeil = varLoad[18]
-        VarC.actionJoueur = int(varLoad[19])
-        VarC.tourJoueur = int(varLoad[20])
+        VarC.answerStart = varLoad[15]
+        VarC.maxThirst = varLoad[16]
+        VarC.maxHunger = varLoad[17]
+        VarC.maxSleep = varLoad[18]
+        VarC.playerAction = int(varLoad[19])
+        VarC.playerTurn = int(varLoad[20])
     except:
         print("Votre ficher de config n'a pas été trouvé, veuillez verifier vos dossiers")
         sys.exit()
@@ -91,27 +91,27 @@ def loadVarSaved():
                 if item > 1:
                     listCoord[item] = listCoord[int(str(item))]
 
-        VarC.nomJoueur = varLoad[0]
+        VarC.namePlayer = varLoad[0]
         VarC.avatar = varLoad[1]
-        VarC.statSoif = varLoad[2]
-        VarC.statFaim = varLoad[3]
-        VarC.statSommeil = varLoad[4]
-        VarC.positionJoueurY = varLoad[5]
-        VarC.positionJoueurX = varLoad[6]
-        VarC.sac = varLoad[7]
-        VarC.limitSac = varLoad[8]
+        VarC.thirst = varLoad[2]
+        VarC.hunger = varLoad[3]
+        VarC.sleep = varLoad[4]
+        VarC.positionPlayerY = varLoad[5]
+        VarC.positionPlayerX = varLoad[6]
+        VarC.bag = varLoad[7]
+        VarC.limitBag = varLoad[8]
         VarC.itemSlot = varLoad[9]
         VarC.prevMoove = varLoad[10]
-        VarC.statutParti = varLoad[11]
+        VarC.statutParty = varLoad[11]
         VarC.actionPossible = varLoad[12]
         VarC.directionPossible = varLoad[13]
         VarC.itemActionPossible = varLoad[14]
-        VarC.reponseDebut = varLoad[15]
-        VarC.maxSoif = varLoad[16]
-        VarC.maxFaim = varLoad[17]
-        VarC.maxSommeil = varLoad[18]
-        VarC.actionJoueur = int(varLoad[19])
-        VarC.tourJoueur = int(varLoad[20])
+        VarC.answerStart = varLoad[15]
+        VarC.maxThirst = varLoad[16]
+        VarC.maxHunger = varLoad[17]
+        VarC.maxSleep = varLoad[18]
+        VarC.playerAction = int(varLoad[19])
+        VarC.playerTurn = int(varLoad[20])
     except:
         print("Votre ficher de config n'a pas été trouvé, veuillez verifier vos dossiers")
         sys.exit()
@@ -156,11 +156,11 @@ def loadHistoric():
 
 def saveData():
     with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/save/save.txt", "w", encoding = "utf-8") as file : 
-        sacJoin = " | ".join(VarC.sac)
+        sacJoin = " | ".join(VarC.bag)
         actionPossibleJoin = " | ".join(VarC.actionPossible)
         itemActionPossibleJoin = " | ".join(VarC.itemActionPossible)
         directionPossibleJoin = " | ".join(VarC.directionPossible)
-        reponseDebutJoin = " | ".join(VarC.reponseDebut)
+        reponseDebutJoin = " | ".join(VarC.answerStart)
         itemSlotJoin = []
         for i in range(0, len(VarC.itemSlot)):
             lineX = []
@@ -169,27 +169,27 @@ def saveData():
             lineXJoin = " ! ".join(lineX)
             itemSlotJoin.append(lineXJoin)
         itemSlotJoin = " | ".join(itemSlotJoin)
-        file.write(f"{VarC.nomJoueur}\n")
+        file.write(f"{VarC.namePlayer}\n")
         file.write(f"{VarC.avatar}\n")
-        file.write(f"{VarC.statSoif}\n")
-        file.write(f"{VarC.statFaim}\n")
-        file.write(f"{VarC.statSommeil}\n")
-        file.write(f"{VarC.positionJoueurY}\n")
-        file.write(f"{VarC.positionJoueurX}\n")
+        file.write(f"{VarC.thirst}\n")
+        file.write(f"{VarC.hunger}\n")
+        file.write(f"{VarC.sleep}\n")
+        file.write(f"{VarC.positionPlayerY}\n")
+        file.write(f"{VarC.positionPlayerX}\n")
         file.write(f"{sacJoin}\n")
-        file.write(f"{VarC.limitSac}\n")
+        file.write(f"{VarC.limitBag}\n")
         file.write(f"{itemSlotJoin}\n")
         file.write(f"{VarC.prevMoove}\n")
-        file.write(f"{VarC.statutParti}\n")
+        file.write(f"{VarC.statutParty}\n")
         file.write(f"{actionPossibleJoin}\n")
         file.write(f"{directionPossibleJoin}\n")
         file.write(f"{itemActionPossibleJoin}\n")
         file.write(f"{reponseDebutJoin}\n")
-        file.write(f"{VarC.maxSoif}\n")
-        file.write(f"{VarC.maxFaim}\n")
-        file.write(f"{VarC.maxSommeil}\n")
-        file.write(f"{VarC.actionJoueur}\n")
-        file.write(f"{VarC.tourJoueur}\n")
+        file.write(f"{VarC.maxThirst}\n")
+        file.write(f"{VarC.maxHunger}\n")
+        file.write(f"{VarC.maxSleep}\n")
+        file.write(f"{VarC.playerAction}\n")
+        file.write(f"{VarC.playerTurn}\n")
 
 def winAddScore(nom, tour, action):
     winner = [f"{nom} | {tour} | {action}\n"]

@@ -1,3 +1,4 @@
+# coding: utf-8
 # import des fichiers
 import fileFunction.variableMap as VarM
 import fileFunction.FunctionAboutBag as FBag
@@ -71,8 +72,8 @@ def printMap (y, x, map1):
 def sleepHour(nbHeure, statSommeil, statSoif, statFaim):
     statSommeil = statSommeil + nbHeure * 6
 
-    if statSommeil > int(VarC.maxSommeil):
-        statSommeil = VarC.maxSommeil
+    if statSommeil > int(VarC.maxSleep):
+        statSommeil = VarC.maxSleep
     statFaim = statFaim - nbHeure * 1
     statSoif = statSoif - nbHeure * 2
     return statSommeil, statFaim, statSoif
@@ -91,7 +92,7 @@ def addItemPointOnMap(map1, items):
 # fonction fin de tour qui imprime la carte et les stats
 def endTurn():
     clear()
-    FMap.printMap(VarC.positionJoueurY, VarC.positionJoueurX, VarM.mapInATab)
+    FMap.printMap(VarC.positionPlayerY, VarC.positionPlayerX, VarM.mapInATab)
     print(f"Votre action précedentes était de : {VarC.prevMoove}")
-    FBag.intoMyBag(VarC.sac, VarC.limitSac)
-    print(f"{VarC.nomJoueur} voici vos stat, faim = {VarC.statFaim}, soif = {VarC.statSoif}, sommeil = {VarC.statSommeil}")
+    FBag.intoMyBag(VarC.bag, VarC.limitBag)
+    print(f"{VarC.namePlayer} voici vos stat, faim = {VarC.hunger}, soif = {VarC.thirst}, sommeil = {VarC.sleep}")

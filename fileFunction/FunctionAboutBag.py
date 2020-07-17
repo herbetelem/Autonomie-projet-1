@@ -1,3 +1,4 @@
+# coding: utf-8
 # Import des librairie
 import random
 import fileFunction.FunctionAboutMap as FMap
@@ -101,15 +102,15 @@ def useAnItem(item, soif, faim, sommeil):
         if item == "bouteille d'eau":
             phrase = "Vous videz votre bouteille d'eau"
             soif = soif + 50
-            if soif > int(VarC.maxSoif):
-                soif = VarC.maxSoif
+            if soif > int(VarC.maxThirst):
+                soif = VarC.maxThirst
             return itemDelete, phrase, sommeil, soif, faim
 
         if item == "ananas":
             phrase = "Vous manger votre ananas"
             faim = faim + 50
-            if faim > int(VarC.maxFaim):
-                faim = VarC.maxFaim
+            if faim > int(VarC.maxHunger):
+                faim = VarC.maxHunger
             return itemDelete, phrase, sommeil, soif, faim
 
         if item == "kit de cookie":
@@ -119,11 +120,11 @@ def useAnItem(item, soif, faim, sommeil):
         if item == "noix de coco":
             phrase = "Vous manger la chair de la noix et buvez son jus"
             soif = soif + 25
-            if soif > VarC.maxSoif:
-                soif = int(VarC.maxSoif)
+            if soif > VarC.maxThirst:
+                soif = int(VarC.maxThirst)
             faim = faim + 25
-            if faim > int(VarC.maxFaim):
-                faim = VarC.maxFaim
+            if faim > int(VarC.maxHunger):
+                faim = VarC.maxHunger
             return itemDelete, phrase, sommeil, soif, faim
     return
 

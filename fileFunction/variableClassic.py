@@ -1,24 +1,25 @@
+# coding: utf-8
 # Les Variable global
 
-nomJoueur = 0 # nomJoueur
+namePlayer = 0 # nomJoueur
 avatar = 0 # avatar
-statSoif = 0 # statSoif
-statFaim = 0 # statFaim
-statSommeil = 0
-positionJoueurY = 0
-positionJoueurX = 0
-sac = 0
-limitSac = 0
-itemSlot = 0
-prevMoove = 0
-statutParti = 0
-actionPossible = 0
-directionPossible = 0
-itemActionPossible = 0
-reponseDebut = 0
-tourJoueur = 0
-actionJoueur = 0
-maxSoif = 0
-maxSommeil = 0
-maxFaim = 0
+thirst = 0 # statSoif
+hunger = 0 # statFaim
+sleep = 0 # statSommeil
+positionPlayerY = 0 # positionJoueurY
+positionPlayerX = 0 # positionJoueurX
+bag = 0 # sac
+limitBag = 0 # limitSac
+itemSlot = 0 # itemSlot
+prevMoove = 0 # prevMoove
+statutParty = 0 # statutParti
+actionPossible = 0 # actionPossible
+directionPossible = 0 # directionPossible
+itemActionPossible = 0 # itemActionPossible
+answerStart = 0 # reponseDebut
+playerTurn = 0 # tourJoueur
+playerAction = 0 # actionJoueur
+maxThirst = 0 # maxSoif
+maxSleep = 0 # maxSommeil
+maxHunger = 0 # maxFaim
 

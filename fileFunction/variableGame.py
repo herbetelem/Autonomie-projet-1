@@ -1,3 +1,4 @@
+# coding: utf-8
 # les variables specifique aux jeux
 import random
 

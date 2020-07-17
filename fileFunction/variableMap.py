@@ -1,3 +1,4 @@
+# coding: utf-8
 # les variable specifique a la map
 
 mapInATab = []

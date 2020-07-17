@@ -1,3 +1,4 @@
+# coding: utf-8
 # Import de mes fichiers et des libs
 import fileFunction.variableMap as VarM
 import fileFunction.FunctionAboutBag as FBag
@@ -17,15 +18,15 @@ def Main():
     # J'affiche le menu qui gere new parti
     FMain.menu()
     # j'affiche la carte
-    FMap.printMap(VarC.positionJoueurY, VarC.positionJoueurX, VarM.mapInATab)
+    FMap.printMap(VarC.positionPlayerY, VarC.positionPlayerX, VarM.mapInATab)
 
     print()
-    while VarC.statutParti == "ok":
+    while VarC.statutParty == "ok":
         FMain.formatVar()
         # je verifie si le joueur est au point de victoire avec les 3 clef
-        if VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "@":
-            if "clef d'or" in VarC.sac and "clef d'argent" in VarC.sac and "clef de bronze" in VarC.sac:
-                FPrint.gameWin(VarC.nomJoueur, VarC.tourJoueur, VarC.actionJoueur)
+        if VarM.mapInATab[VarC.positionPlayerY][VarC.positionPlayerX] == "@":
+            if "clef d'or" in VarC.bag and "clef d'argent" in VarC.bag and "clef de bronze" in VarC.bag:
+                FPrint.gameWin(VarC.namePlayer, VarC.playerTurn, VarC.playerAction)
             # si il n'a pas les clef je le degage de maniere aleatoire dans un espace vide
             else:
                 VarC.prevMoove = "Vous avez essayé de sortir du jeu sans toute les clefs, \n                                    un singe vous assome et vous traine quelque part dans l'ile"
@@ -34,32 +35,32 @@ def Main():
                 while VarM.mapInATab[punitionY][punitionX] != " ":
                     punitionY = random.randint(0, len(VarM.mapInATab) - 1)
                     punitionX = random.randint(0, len(VarM.mapInATab[0]) - 1)
-                VarC.positionJoueurY = punitionY
-                VarC.positionJoueurX = punitionX
+                VarC.positionPlayerY = punitionY
+                VarC.positionPlayerX = punitionX
                 
         # je verifie si il est a la position d'un jeu et si oui je lance le jeux
         #------------------------------------------------------------------------------
-        elif VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "£":
-            if len(VarC.sac) == VarC.limitSac:
+        elif VarM.mapInATab[VarC.positionPlayerY][VarC.positionPlayerX] == "£":
+            if len(VarC.bag) == VarC.limitBag:
                 print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
-                VarC.positionJoueurX = VarC.positionJoueurX + 1
+                VarC.positionPlayerX = VarC.positionPlayerX + 1
             else:
                 FGame.jeuxNombreMystere()
-                VarC.actionJoueur += 1
-        elif VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "$":
-            if len(VarC.sac) == VarC.limitSac:
+                VarC.playerAction += 1
+        elif VarM.mapInATab[VarC.positionPlayerY][VarC.positionPlayerX] == "$":
+            if len(VarC.bag) == VarC.limitBag:
                 print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
-                VarC.positionJoueurX = VarC.positionJoueurX - 1
+                VarC.positionPlayerX = VarC.positionPlayerX - 1
             else:
                 FGame.jeuxCodeCesar()
-                VarC.actionJoueur += 1
-        elif VarM.mapInATab[VarC.positionJoueurY][VarC.positionJoueurX] == "€":
-            if len(VarC.sac) == VarC.limitSac:
+                VarC.playerAction += 1
+        elif VarM.mapInATab[VarC.positionPlayerY][VarC.positionPlayerX] == "€":
+            if len(VarC.bag) == VarC.limitBag:
                 print("Vous n'avez pas assez de place pour potentielement recuperer la clef")
-                VarC.positionJoueurX = VarC.positionJoueurX - 1
+                VarC.positionPlayerX = VarC.positionPlayerX - 1
             else:
                 FGame.jeuxFizzBuzz()
-                VarC.actionJoueur += 1
+                VarC.playerAction += 1
         #------------------------------------------------------------------------------
 
         else:
@@ -79,20 +80,20 @@ def Main():
                     destination = str(input("Vers ou voulez vous aller ? (sphinx, cesar, singe, porte) : "))
                     if destination == "sphinx":
                         VarC.prevMoove = "Comme vous êtes un tricheur vous aller direct voir le sphinx"
-                        VarC.positionJoueurY = 24
-                        VarC.positionJoueurX = 3
+                        VarC.positionPlayerY = 24
+                        VarC.positionPlayerX = 3
                     elif destination == "cesar":
                         VarC.prevMoove = "Comme vous êtes un tricheur vous aller direct voir cesar"
-                        VarC.positionJoueurY = 24
-                        VarC.positionJoueurX = 92
+                        VarC.positionPlayerY = 24
+                        VarC.positionPlayerX = 92
                     elif destination == "singe":
                         VarC.prevMoove = "Comme vous êtes un tricheur vous aller direct voir les singes"
-                        VarC.positionJoueurY = 3
-                        VarC.positionJoueurX = 84
+                        VarC.positionPlayerY = 3
+                        VarC.positionPlayerX = 84
                     elif destination == "porte":
                         VarC.prevMoove = "Comme vous êtes un tricheur vous aller direct voir la porte"
-                        VarC.positionJoueurY = 3
-                        VarC.positionJoueurX = 44
+                        VarC.positionPlayerY = 3
+                        VarC.positionPlayerX = 44
                     else:
                         input("tricher c'est bien, regarder les options c'est mieux")
                 else:
@@ -103,15 +104,15 @@ def Main():
             
             elif action == "bouger":
                 FMain.bouger()
-                VarC.tourJoueur += 1
+                VarC.playerTurn += 1
 
             elif action == "dormir":
                 FMain.dormir()
-                VarC.actionJoueur += 1
+                VarC.playerAction += 1
             
             elif action == "inventaire":
                 FMain.inventaire()
-                VarC.actionJoueur += 1
+                VarC.playerAction += 1
             
             elif action == "sauvegarder":
                 FSave.saveData()
@@ -124,14 +125,14 @@ def Main():
                     print("vous n'avez pas confirmer, j'annule donc votre demande.")
 
             # je verifie que le joueur ai encore des stats pour continuer
-            if VarC.statFaim <= 0 or VarC.statSoif <= 0 or VarC.statSommeil <= 0:
-                VarC.statutParti = "ko"
+            if VarC.hunger <= 0 or VarC.thirst <= 0 or VarC.sleep <= 0:
+                VarC.statutParty = "ko"
         # j'apelle la fonction fin de tour qui imprime la carte et les stats
         FMap.endTurn()
 
     # si la parti est ko game over
-    if VarC.statutParti == "ko":
-        FPrint.gameOver(VarC.nomJoueur)
+    if VarC.statutParty == "ko":
+        FPrint.gameOver(VarC.namePlayer)
 
 # truc d'Alain pour appeler le main propre
 if __name__ == "__main__":
