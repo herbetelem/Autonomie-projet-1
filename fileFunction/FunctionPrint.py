@@ -1,4 +1,5 @@
 import sys
+import fileFunction.FunctionSave as FSave
 
 # rien a expliquer ici ce n'est que des print
 
@@ -39,7 +40,7 @@ def gameWin(nomJoueur, tourJoueur, actionJoueur):
     print(" ^vvvvvv^^vvvvvvvv^vv^vvv^^^^^^_____##^^^vvvvvvvv^^^^")
     print("    ^^vvvvvvv^^vvvvvvvvvv^^^^/\@@@@@@\#vvvv^^^")
     print("         ^^vvvvvv^^^^^^vvvvv/__\@@@@@@\^vvvv^v")
-    print("             ;^^vvvvvvvvvvv/____\@@@@@@\vvvvvvv")
+    print("             ;^^vvvvvvvvvvv/____\@@@@@@\\vvvvvvv")
     print("             ;      \_  ^\|[  -:] ||--| | _/^^")
     print("             ;        \   |[   :] ||_/| |/")
     print("             ;         \\ ||___:]______/")
@@ -52,9 +53,11 @@ def gameWin(nomJoueur, tourJoueur, actionJoueur):
     print()
     print(f"Félicitation {nomJoueur}, vous avez gagner cette partie !")
     print(f"Vous avez gagné en fesant {tourJoueur} deplacements et {actionJoueur} actions")
+    FSave.winAddScore(nomJoueur, tourJoueur, actionJoueur)
+    FSave.addHistory(nomJoueur, "Win")
     sys.exit()
 
-def gameOver():
+def gameOver(nomJoueur):
     print()
     print("-----------------GAME OVER------------------")
     print()	
@@ -80,6 +83,7 @@ def gameOver():
     print("?MXT@Wx.~    :     ~'##*$$$$M~")
     print()
     print()
+    FSave.addHistory(nomJoueur, "Loose")
 
 def printRegle():
     print()

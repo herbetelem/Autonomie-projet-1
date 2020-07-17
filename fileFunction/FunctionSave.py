@@ -2,6 +2,7 @@
 import json
 import fileFunction.variableClassic as VarC
 import fileFunction.variableMap as VarM
+import datetime
 import sys
 
 # sa fonctionne mais j'ai rien compris donc j'ai rien a expluquer
@@ -145,6 +146,14 @@ def loadScore():
             lineX = lineX.split(" | ")
             print(f"{lineX[0]} à terminé le jeu en {lineX[1]} déplacements et {lineX[2]} actions")
 
+def loadHistoric():
+    with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/historic/historic.txt", "r", encoding = "utf-8") as file : 
+        fileLoaded = [line for line in file]
+        for lineX in fileLoaded:
+            lineX = lineX.replace("\n", "")
+            lineX = lineX.split(" | ")
+            print(f"Le {lineX[0]} {lineX[1]} à jouer jeu et a {lineX[2]}")
+
 def saveData():
     with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/save/save.txt", "w", encoding = "utf-8") as file : 
         sacJoin = " | ".join(VarC.sac)
@@ -192,4 +201,18 @@ def winAddScore(nom, tour, action):
     with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/score/score.txt", "w", encoding = "utf-8") as file :
         for winnerX in winner:
             file.write(winnerX)
-winAddScore()
+
+def addHistory(nom, game):
+    date = datetime.date.today()
+    history = [f"{date} | {nom} | {game}\n"]
+    with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/historic/historic.txt", "r", encoding = "utf-8") as file : 
+        fileLoaded = [line for line in file]
+        for lineX in fileLoaded:
+            history.append(lineX)
+    
+    with open("C:/Users/PYTHON/Documents/GitHub/Autonomie-projet-1/fileVarTxt/historic/historic.txt", "w", encoding = "utf-8") as file :
+        compteur = 0
+        for historyX in history:
+            if compteur < 20:
+                file.write(historyX)
+            compteur += 1

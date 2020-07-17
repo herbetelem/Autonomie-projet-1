@@ -131,7 +131,7 @@ def Main():
 
     # si la parti est ko game over
     if VarC.statutParti == "ko":
-        FPrint.gameOver()
+        FPrint.gameOver(VarC.nomJoueur)
 
 # truc d'Alain pour appeler le main propre
 if __name__ == "__main__":
