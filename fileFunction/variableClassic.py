@@ -1,9 +1,9 @@
 # Les Variable global
 
-nomJoueur = 0
-avatar = 0
-statSoif = 0
-statFaim = 0
+nomJoueur = 0 # nomJoueur
+avatar = 0 # avatar
+statSoif = 0 # statSoif
+statFaim = 0 # statFaim
 statSommeil = 0
 positionJoueurY = 0
 positionJoueurX = 0
@@ -21,3 +21,4 @@ actionJoueur = 0
 maxSoif = 0
 maxSommeil = 0
 maxFaim = 0
+
