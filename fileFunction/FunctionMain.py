@@ -120,6 +120,11 @@ def menu():
         Fsave.loadScore()
         input("Appuyer sur Entrer pour continuer")
         menu()
+    elif menuChoix == 4:
+        clear()
+        Fsave.loadHistoric()
+        input("Appuyer sur Entrer pour continuer")
+        menu()
 
 # fonction pour la commande bouger
 def bouger():
